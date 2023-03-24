@@ -12,6 +12,11 @@ import PolygonLogo from '../assets/images/icons/polygon_logo.svg'
 import DownArrow from '../assets/images/icons/down-arrow.png'
 import classNames from "classnames";
 import './style/header.scss'
+// import { Web3Button } from '@web3modal/react'
+
+// function HomePage() {
+//   return 
+// }
 function Header(props) {
     useEffect(() => {
         // a()
@@ -25,12 +30,6 @@ function Header(props) {
     const [active, setActive] = useState(false);
     const a = () => {
         // console.log(122)
-    }
-    const changeActive=()=> {
-        setActive(true)
-    }
-    const removeActive=()=> {
-        setActive(false)
     }
     const jumpFun = (route) => {
         // history.push('/questionnaire/createques')
@@ -111,6 +110,7 @@ function Header(props) {
                                 <span className="icon-svg icon-connect"></span>
                             </button>
                         </li>
+                        {/* <Web3Button /> */}
                     </ul>
                     <div className="header_icons">
                         <button className="header_icons_btn cursor_pointer"><span></span></button>
