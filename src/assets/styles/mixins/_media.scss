@@ -1,0 +1,25 @@
+// media 媒体查询四个阶段
+$web-width-phone: 750px; 
+$web-width-small: 960px; 
+$web-width-medium: 1200px;
+$web-width-large: 1600px;
+$web-width-oversized: 1900px;
+
+// $width可以单独设置某一断点的媒体查询
+@mixin responsive($width) {
+    @if $width == oversized-screens {
+        @media only screen and (max-width: $web-width-oversized) { @content; }
+    }
+    @else if $width == wide-screens {
+        @media only screen and (max-width: $web-width-large) { @content; }
+    }
+    @else if $width == medium-screens {
+        @media only screen and (max-width: $web-width-medium) { @content; }
+    }
+    @else if $width == small-screens {
+        @media only screen and (max-width: $web-width-small) { @content; }
+    }
+    @else if $width == phone-screens {
+        @media only screen and (max-width: $web-width-phone) { @content; }
+    }
+}

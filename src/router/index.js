@@ -12,7 +12,7 @@ export default class index extends Component {
         // 使用BrowserRouter包裹，配置路由
       <BrowserRouter>
          {/* 使用/配置路由默认页；exact严格匹配 */}
-        <Route render={props=><Vault {...props} />} path='/' exact></Route>
+        <Route render={props=><Trading {...props} />} path='/' exact></Route>
         <Route render={props=><Vault {...props} />} path='/Vault'></Route>
         <Route render={props=><Layout {...props} />} path='/Layout'></Route>
         <Route render={props=><Trading {...props} />} path='/Trading'></Route>
