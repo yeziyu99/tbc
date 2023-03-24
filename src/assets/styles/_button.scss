@@ -1,0 +1,192 @@
+// btn base样式
+.btn {
+  display: inline-block;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 18px;
+  background-color: #009688;
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  vertical-align: middle;
+  min-width: 120px;
+}
+.btn:hover {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  // color: #fff;
+}
+// button大小
+//超大型
+.btn-xl {
+  height: 58px;
+  line-height: 58px;
+  padding: 0 50px;
+  font-size: 26px;
+}
+// 大型
+.btn-lg {
+  height: 44px;
+  line-height: 44px;
+  padding: 0 25px;
+  font-size: 16px;
+}
+// 小型
+.btn-sm {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  font-size: 14px;
+}
+// 迷你
+.btn-xs {
+  height: 22px;
+  line-height: 22px;
+  padding: 0 5px;
+  font-size: 12px;
+}
+// width100%
+.btn-100 {
+  width: 100%;
+}
+
+.btn-200 {
+  min-width: 200px;
+}
+
+.btn-300 {
+  min-width: 300px;
+}
+
+// 圆角
+.btn-radius {
+  border-radius: 100px;
+}
+.btn-radius10 {
+  border-radius: 10px;
+}
+
+@include responsive(phone-screens) {
+  .btn {
+    min-width: px2rem(240);
+  }
+}
+
+// 颜色
+.link-btn {
+  background: none;
+  color: $main-black;
+}
+.link-color {
+  color: $color-link;
+}
+.btn-primary {
+  background-color: $btn-bg-primary;
+}
+.btn-red {
+  background-color: $btn-bg-red;
+}
+.btn-cancel {
+  background-color: transparent;
+  border: 1px solid $main-white;
+}
+
+// 红绿
+.price-bg-red {
+  border: 1px solid transparent;
+  background-color: $price-red;
+  color: $main-white;
+}
+.price-bg-green {
+  border: 1px solid transparent;
+  background-color: $price-green;
+  color: $main-white;
+}
+.price-border-red {
+  color: $price-red;
+  border: 1px solid $price-red;
+}
+.price-border-green {
+  color: $price-green;
+  border: 1px solid $price-green;
+}
+.price-red {
+  color: $price-red;
+}
+.price-green {
+  color: $price-green;
+}
+
+// 数字按钮特色
+.btn-nub-unique {
+  // width: 80px;
+  margin: 0 2px;
+  display: flex;
+  align-items: flex-end;
+  line-height: 1;
+  > span {
+    > span {
+      letter-spacing: 1px;
+      &:nth-child(1) {
+        font-size: 13px;
+      }
+      &:nth-child(2) {
+        font-size: 22px;
+      }
+      &:nth-child(3) {
+        font-size: 13px;
+        // padding-top: 3px;
+        align-self: baseline;
+        vertical-align: top;
+      }
+    }
+  }
+  &.sm {
+    > span {
+      > span {
+        &:nth-child(1) {
+          font-size: 12px;
+        }
+        &:nth-child(2) {
+          font-size: 17px;
+        }
+        &:nth-child(3) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+// icon
+.btn-icon {
+  $sm: 28px;
+  display: inline-block;
+  width: $sm;
+  min-width: $sm;
+  height: $sm;
+  line-height: $sm;
+  border-radius: 6px;
+  padding: 0 6px;
+  cursor: pointer;
+  text-align: center;
+  color: $main-white;
+  &.initial {
+    width: initial;
+  }
+  &.btn-icon-nobg {
+    &:hover {
+      background: $bg-black-six;
+    }
+  }
+  &.btn-icon-black {
+    background: $bg-black-one;
+  }
+  &.btn-icon-black2 {
+    background: $bg-black-six;
+  }
+}

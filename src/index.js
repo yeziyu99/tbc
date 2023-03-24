@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+// import './assets/styles/index.scss'
 
 import { BrowserRouter } from "react-router-dom"//新增
  
@@ -13,7 +15,10 @@ root.render(
   //   <App />
   // </BrowserRouter>
   <React.StrictMode>
+    {/* <App /> */}
+   <BrowserRouter> 
     <App />
+  </BrowserRouter>
   </React.StrictMode>
 );
 

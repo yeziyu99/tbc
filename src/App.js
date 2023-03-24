@@ -1,4 +1,5 @@
 // import logo from './logo.svg';
+import Layout from './layout/layout.jsx';
 import './App.css';
 // import Login from './page/login/login'
 import { Route,BrowserRouter } from 'react-router-dom'
@@ -9,9 +10,8 @@ function App() {
   const element = withRouter(Router)
   return (
     <div className="App">
+      {element}
     {/* <Router></Router> */}
-    {/* {element} */}
-    {/* <BrowserRouter></BrowserRouter> */}
       {/* <Login></Login> */}
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

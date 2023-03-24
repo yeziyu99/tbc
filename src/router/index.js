@@ -10,13 +10,13 @@ const Router=[
   {
     path:'/',
     name:'Trading',
-    // element:<Trading />,
+    element:<Trading />,
     component:Trading
   },
   {
     path:'/Vault',
     name:'Vault',
-    // element:<Vault />,
+    element:<Vault />,
     component:Vault
     // children:[]
   },
