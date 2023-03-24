@@ -231,7 +231,7 @@ function Vault() {
                         </div>
                         <div className="vault_panel_column_input_row">
                             
-                            <input type="text" name="" id=""  />
+                            <input type="number" name="" id=""  value={columnInput} onChange={(e) => setColumnInputChange(e)}/>
                             <span>
                                 <img src={Dai} alt="" />
                                 DAL
@@ -245,7 +245,7 @@ function Vault() {
                             <div>180 DAYS</div>
                             <div>365 DAYS</div>
                             
-                            <input type="number" className="active box-select-input"  placeholder="Custom" />
+                            <input type="number" className="active box-select-input"  placeholder="Custom" value={columnInput2} onChange={(e) => setColumnInput2Change(e)}/>
                         </div>
                     </div>
                     <div className={classNames('vault_panel_column_section','vault_panel_column_discount',{'displayNone':!(btnTagTwo == 'deposits')})} >
@@ -311,7 +311,7 @@ function Vault() {
                         </div>
                         <div className="vault_panel_column_input_row">
                             {/* pattern="^([0-9]*(?:[.][0-9]*)?)$" tabindex="0" autocomplete="off" lang="en" pattern={'^([0-9]*(?:[.][0-9]*)?)$'} tabindex={'0'} autocomplete={'off'} */}
-                            <input type="text" name="" id=""  value={columnInput3} onChange={(e) => setColumnInput3Change(e)}/>
+                            <input type="number" name="" id=""  value={columnInput3} onChange={(e) => setColumnInput3Change(e)}/>
                             <span>
                                 <img src={Gdai} alt="" />
                                 gDAI
@@ -345,7 +345,7 @@ function Vault() {
             <div className={classNames('vault_faqLink',{'displayNone':btnTag != 'unlock'})}>
                 No locked deposits
             </div>
-            <div class="vault_faqLink">
+            <div className="vault_faqLink">
                 Have questions? Please ask in
                 <span> Telegram </span>
                 or see the
