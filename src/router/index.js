@@ -11,14 +11,15 @@ const Router=[
     path:'/',
     name:'Trading',
     element:<Trading />,
-    component:Trading
+    component:Trading,
+    meta:{title:'222222222' }
   },
   {
     path:'/Vault',
     name:'Vault',
     element:<Vault />,
-    component:Vault
-    // children:[]
+    component:Vault,
+    children:[]
   },
 ]
  export default Router

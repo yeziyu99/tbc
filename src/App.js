@@ -2,16 +2,22 @@
 import Layout from './layout/layout.jsx';
 import './App.css';
 // import Login from './page/login/login'
-import { Route,BrowserRouter } from 'react-router-dom'
+import { Route,BrowserRouter ,renderRoutes} from 'react-router-dom'
 
-import { withRouter } from 'react-router-dom'
 import Router from './router/index'
 function App() {
-  const element = withRouter(Router)
   return (
     <div className="App">
-      {element}
+      <Layout></Layout>
     {/* <Router></Router> */}
+    {/* <BrowserRouter> */}
+      {
+        Router.map((item)=>{
+          return <Route render={()=><item.component {...item.meta} />} key={item.path} path={item.path} exact></Route>
+        })
+      }
+    {/* </BrowserRouter> */}
+    {/* <BrowserRouter >{renderRoutes(Router)}</BrowserRouter> */}
       {/* <Login></Login> */}
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

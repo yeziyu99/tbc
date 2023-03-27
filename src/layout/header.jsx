@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Router from '../router/index'
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
+
+// import {useHistory} from 'react-router'
 // import { useParams} from "react-router-dom"
 
 
@@ -15,9 +17,11 @@ import './style/header.scss'
 function Header(props) {
     useEffect(() => {
         // a()
-        console.log(props);
+        // console.log(props);
         
     }, [])
+    let history=useNavigate()
+    console.log(history)
     // const { id } = useParams();
     // className: this.$route.name,
     // active:false
