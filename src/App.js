@@ -2,14 +2,20 @@
 import Layout from './layout/layout.jsx';
 import './App.css';
 // import Login from './page/login/login'
+import { Route,BrowserRouter } from 'react-router-dom'
 
+import { withRouter } from 'react-router-dom'
 import Router from './router/index'
 function App() {
+  const element = withRouter(Router)
   return (
     <div className="App">
 
     <Layout></Layout>
     <Router></Router>
+    {/* <Router></Router> */}
+    {/* {element} */}
+    {/* <BrowserRouter></BrowserRouter> */}
       {/* <Login></Login> */}
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

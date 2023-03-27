@@ -6,8 +6,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import './assets/styles/index.scss'
 
+import { BrowserRouter } from "react-router-dom"//新增
+ 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  // <BrowserRouter> 
+  //   <App />
+  // </BrowserRouter>
   <React.StrictMode>
     <App />
   </React.StrictMode>
