@@ -6,22 +6,22 @@ import Layout from '../layout/layout'
 // 导入路由依赖
 import { Route,BrowserRouter } from 'react-router-dom'
 
-const Router=[
-  {
-    path:'/',
-    name:'Trading',
-    // element:<Trading />,
-    component:Trading
-  },
-  {
-    path:'/Vault',
-    name:'Vault',
-    // element:<Vault />,
-    component:Vault
-    // children:[]
-  },
-]
- export default Router
+// const Router=[
+//   {
+//     path:'/',
+//     name:'Trading',
+//     // element:<Trading />,
+//     component:Trading
+//   },
+//   {
+//     path:'/Vault',
+//     name:'Vault',
+//     // element:<Vault />,
+//     component:Vault
+//     // children:[]
+//   },
+// ]
+//  export default Router
 
 
  
