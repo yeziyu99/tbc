@@ -10,6 +10,8 @@ function Vault() {
 
     }, [])
     const [btnTag, setBtnTag] = useState('deposit');
+    const [title, setTitle] = useState(false);
+    const [title2, setTitle2] = useState(false);
     const [btnTagTwo, setBtnTagTwo] = useState('deposit');
     const [columnInput, setColumnInput] = useState(0);
     const [columnInput2, setColumnInput2] = useState(0);
@@ -112,18 +114,24 @@ function Vault() {
                     </div>
                     <div className="vault_panel_values__Qul9W">
                         <div className="vault_panel_column__infWN">
-                            <span
-                                className="vault_panel_column__infWN_title vault_panel_column__infWN_title_border Tooltip_tooltipCursor">Total
-                                Value</span>
+                            <span className="vault_panel_column__infWN_title vault_panel_column__infWN_title_border Tooltip_tooltipCursor" onMouseOut={()=>{setTitle(true)}} onMouseOver ={() => { setTitle(false) }}>
+                                Total Value
+                                <div className={classNames({'displayNone':title})}>
+                                    Total value of your gDAl
+                                </div>
+                            </span>
                             <span className="vault_panel_column__infWN_numImg">
                                 0
                                 <img src={Dai} alt="" />
                             </span>
                         </div>
                         <div className="vault_panel_column__infWN">
-                            <span
-                                className="vault_panel_column__infWN_title vault_panel_column__infWN_title_border Tooltip_tooltipCursor">Est.
-                                Earnings</span>
+                            <span className="vault_panel_column__infWN_title vault_panel_column__infWN_title_border Tooltip_tooltipCursor" onMouseOut={()=>{setTitle2(true)}} onMouseOver ={() => { setTitle2(false) }}>
+                                Est. Earnings
+                                <div style={{top:'-100px'}} className={classNames({'displayNone':title2})}>
+                                    Calculated based on current market value of gDAI holdings and the total DAI deposited and withdrawn.
+                                </div>
+                            </span>
                             <span className="vault_panel_column__infWN_numImg">
                                 0
                                 <img src={Dai} alt="" />
