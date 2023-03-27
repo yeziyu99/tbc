@@ -20,7 +20,7 @@ import './style/header.scss'
 function Header(props) {
     useEffect(() => {
         // a()
-        console.log(props);
+        // console.log(props);
         
     }, [])
     // const { id } = useParams();
