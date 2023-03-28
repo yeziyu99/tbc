@@ -4,8 +4,10 @@ import './style/index.scss';
 import classNames from "classnames";
 import Dai from '../../assets/images/icons/dai.svg'
 import Gdai from '../../assets/images/icons/gdai.png'
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { useNavigate, useLocation, useRouteMatch, useParams, } from 'react-router-dom'
 function Vault() {
+    console.log(useNavigate(),'pppp')
     useEffect(() => {
 
     }, [])

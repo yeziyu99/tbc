@@ -5,18 +5,12 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import './assets/styles/index.scss'
-
-import { BrowserRouter } from "react-router-dom"//新增
- 
-
+import {BrowserRouter as Router} from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <BrowserRouter> 
-  //   <App />
-  // </BrowserRouter>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+     <Router>
+       <App />
+     </Router>
 );
 
 // If you want to start measuring performance in your app, pass a function
