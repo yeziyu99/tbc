@@ -12,7 +12,6 @@ function Layout(props) {
   }
   return (
     <div className="layout">
-      <div onClick={jump}>2222</div>
       {/* <div>layout</div>
       <Router></Router> */}
       <Header></Header>
