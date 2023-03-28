@@ -1,0 +1,568 @@
+#root{
+    min-width: 1280px;
+}
+ /*
+KISSY CSS Reset
+理念：清除和重置是紧密不可分的
+特色：1.适应中文 2.基于最新主流浏览器
+*/
+
+
+/* 清除内外边距 */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+
+/* structural elements 结构元素 */
+
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+
+/* list elements 列表元素 */
+
+pre,
+
+/* text formatting elements 文本格式元素 */
+
+fieldset,
+lengend,
+button,
+input,
+textarea,
+
+/* form elements 表单元素 */
+
+th,
+td,
+a,
+div,
+section,
+article {
+    /* table elements 表格元素 */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// /* 设置默认字体 */
+// body,
+// button,
+// input,
+// select,
+// textarea {
+//   /* for ie */
+//   /*font: 12px/1 "Helvetica Neue",Helvetica,"Lantinghei SC","Microsoft YaHei",Arial,sans-serif;*/
+//   font: 12px/1 "Helvetica Neue", Helvetica, "Lantinghei SC", "Microsoft YaHei",
+//     Arial, sans-serif; /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+// }
+h1 {
+    font-size: 18px;
+    /* 18px / 12px = 1.5 */
+}
+
+h2 {
+    font-size: 16px;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+h4,
+h5,
+h6 {
+    font-size: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 500;
+}
+
+address,
+cite,
+dfn,
+em,
+var {
+    font-style: normal;
+}
+
+
+/* 将斜体扶正 */
+
+code,
+kbd,
+pre,
+samp,
+tt {
+    font-family: "Helvetica Neue", Helvetica, "Lantinghei SC", "Microsoft YaHei", Arial, sans-serif;
+}
+
+
+/* 统一等宽字体 */
+
+small {
+    font-size: 12px;
+}
+
+
+/* 小于 12px 的中文很难阅读，让 small 正常化 */
+
+
+/* 重置列表元素 */
+
+ul,
+ol {
+    list-style: none;
+}
+
+
+/* 重置文本格式元素 */
+
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+abbr[title],
+acronym[title] {
+    /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+q:before,
+q:after {
+    content: "";
+}
+
+
+/* 重置表单元素 */
+
+legend {
+    color: #000;
+}
+
+
+/* for ie6 */
+
+fieldset,
+img {
+    border: none;
+}
+
+
+/* img 搭车：让链接里的 img 无边框 */
+
+
+/* 注：optgroup 无法扶正 */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+    /* 使得表单元素在 ie 下能继承字体大小 */
+    outline: 0;
+    min-width: 0;
+}
+
+
+/* 重置表格元素 */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+
+/* 重置 hr */
+
+hr {
+    border: none;
+    height: 1px;
+}
+
+
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+
+// html {
+//   overflow-y: scroll;
+// }
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+// 初始化Phone Safari 下 input disabled 颜色的修改
+input:disabled {
+    opacity: 1;
+    -webkit-text-fill-color: #ccc;
+}
+
+input[type="search"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+    -webkit-appearance: none;
+}
+:root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --lightest: #fff;
+    --light: #dddde3;
+    --grey1: #c7c7d1;
+    --grey2: #bcbcc8;
+    --grey3: #b0b0bf;
+    --grey4: #727275;
+    --dark1: #1c1c22;
+    --dark2: #121216;
+    --dark3: #09090b;
+    --transparent: #09090b50;
+    --shadow: var(--dark3);
+    --border-color: var(--dark1);
+    --green: #3deca7;
+    --red: #d34a4a;
+    --red-opaque: #eb536033;
+    --green-opaque: #53ebbd33;
+    --blue1: #839bec;
+    --blue2: #10a4cc;
+    --blue3: #3559db;
+    --yellow: #e3df59;
+    --mint: #dcfff7;
+    --blue-gradient: linear-gradient(23deg, var(--blue2), var(--positive));
+    --main-color: #1de7d9;
+    --page-bg: #0d0d10;
+    --panel-bg: var(--dark2);
+    --panel-header: #0f0f13;
+    --panel-border: #202027;
+    --panel-shadow: var(--dark3);
+    --radial-bg: radial-gradient(at top center, #171825, #09090a);
+    --floating-panel-bg: #1e1e2b9d;
+    --floating-panel-header-bg: #15151e;
+    --floating-panel-border: #2b2935;
+    --floating-panel-input-bg: #282935;
+    --floating-panel-input-border: #363746;
+    --floating-panel-input-bg-active: #282935;
+    --floating-panel-divider: #2b2935;
+    --floating-panel-button-bg: #363cd7;
+    --floating-panel-button-text: #fff;
+    --floating-panel-box-select-bg: var(--strong-bg);
+    --floating-panel-segmented-bg: transparent;
+    --floating-panel-segmented-border: #2b2935;
+    --floating-panel-segmented-text: var(--text-superlight);
+    --floating-panel-segmented-bg-active: #3f435a;
+    --floating-panel-segmented-border-active: #7e779e;
+    --floating-panel-segmented-text-active: var(--text);
+    --badge-bg: #31db97;
+    --badge-text: #000;
+    --light-bg: #37383a;
+    --strong-bg: var(--dark3);
+    --divider: #232325;
+    --divider-light: #1d1d20;
+    --divider-strong: #373739;
+    --divider-transparent: hsla(0, 0%, 100%, .075);
+    --navbar-bg: var(--transparent);
+    --footer-bg: var(--transparent);
+    --text: var(--lightest);
+    --text-description: var(--light);
+    --text-light: #adadbb;
+    --text-superlight: #82828f;
+    --text-strong: #fff;
+    --link: #7b72ff;
+    --brand: var(--main-color);
+    --accent: #549cfc;
+    --accent-alt: #6f89fc;
+    --accent-light: #3a5174;
+    --positive: var(--green);
+    --negative: var(--red);
+    --positive-opaque: #3deca733;
+    --negative-opaque: #d34a4a33;
+    --neutral: #888;
+    --success: var(--green);
+    --info: var(--blue1);
+    --danger: var(--red);
+    --warning: #ffb685;
+    --error: var(--red);
+    --primary: var(--main-color);
+    --secondary: var(--blue2);
+    --primary-element-bg: #39393f;
+    --primary-element-border: #56565c;
+    --primary-element-text: #e6e6e9;
+    --secondary-element-bg: #1a1a22;
+    --secondary-element-border: #56565c;
+    --secondary-element-text: var(--text-superlight);
+    --secondary-element-bg-active: #282c3b;
+    --secondary-element-border-active: #56565c;
+    --secondary-element-text-active: var(--text-description);
+    --input-bg: var(--strong-bg);
+    --input-border: var(--strong-bg);
+    --input-border-alt: #1f1f24;
+    --input-bg-active: var(--strong-bg);
+    --input-border-active: #283552;
+    --highlight: #ffffff11;
+    --highlight-light: #ffffff05;
+    --disabled-bg: #404046;
+    --disabled-border: #5c5b64;
+    --disabled-text: #8d8d9c;
+    --modal-bg: var(--dark2);
+    --modal-border: #3a3b46;
+    --modal-shadow: rgba(0, 0, 0, .5);
+    --dropdown-bg: #1c1c22;
+    --dropdown-border: #3a3b46;
+    --dropdown-shadow: rgba(0, 0, 0, .5);
+    --toast-bg: #17171c;
+    --toast-border: #3d3d43;
+    --scrollbar-track: var(--dark1);
+    --scrollbar-thumb: var(--text-light);
+    --slider-thumb: #282c3b;
+    --slider-track: linear-gradient(270deg, var(--positive) 10%, var(--blue2) 100%);
+    --slider-rail: #282c3b;
+    --slider-mark: #35394b;
+    --tooltip-underline: #8588ac;
+    --selected-border: #569ffd;
+    --switch-bg: #366bfa;
+    --switch-border: #2751d8;
+    --multichart-gap: #0c0c0f;
+    --share-trade-gradient: linear-gradient(180deg, #1f3b39, #0d1816);
+    --waves-opacity: 0.6;
+    --filter-img: invert(100%) sepia(25%) saturate(2%) hue-rotate(43deg) brightness(106%) contrast(101%);
+    --depth1: #1c1c22;
+}
+
+:host,
+ :root {
+    --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Solid";
+    --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Regular";
+    --fa-font-light: normal 300 1em/1 "Font Awesome 6 Light";
+    --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Thin";
+    --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+    --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+    --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+    --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+}
+
+:root {
+    --toastify-color-light: #fff;
+    --toastify-color-dark: #121212;
+    --toastify-color-info: #3498db;
+    --toastify-color-success: #07bc0c;
+    --toastify-color-warning: #f1c40f;
+    --toastify-color-error: #e74c3c;
+    --toastify-color-transparent: hsla(0, 0%, 100%, .7);
+    --toastify-icon-color-info: var(--toastify-color-info);
+    --toastify-icon-color-success: var(--toastify-color-success);
+    --toastify-icon-color-warning: var(--toastify-color-warning);
+    --toastify-icon-color-error: var(--toastify-color-error);
+    --toastify-toast-width: 320px;
+    --toastify-toast-background: #fff;
+    --toastify-toast-min-height: 64px;
+    --toastify-toast-max-height: 800px;
+    --toastify-font-family: sans-serif;
+    --toastify-z-index: 9999;
+    --toastify-text-color-light: #757575;
+    --toastify-text-color-dark: #fff;
+    --toastify-text-color-info: #fff;
+    --toastify-text-color-success: #fff;
+    --toastify-text-color-warning: #fff;
+    --toastify-text-color-error: #fff;
+    --toastify-spinner-color: #616161;
+    --toastify-spinner-color-empty-area: #e0e0e0;
+    --toastify-color-progress-light: linear-gradient(90deg, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+    --toastify-color-progress-dark: #bb86fc;
+    --toastify-color-progress-info: var(--toastify-color-info);
+    --toastify-color-progress-success: var(--toastify-color-success);
+    --toastify-color-progress-warning: var(--toastify-color-warning);
+    --toastify-color-progress-error: var(--toastify-color-error);
+    --w3m-color-fg-accent: rgb(81, 109, 251);
+    --w3m-color-fg-inverse: rgb(255, 255, 255);
+    --w3m-color-fg-1: rgb(228, 231, 231);
+    --w3m-color-fg-2: rgb(148, 158, 158);
+    --w3m-color-fg-3: rgb(110, 119, 119);
+    --w3m-color-bg-1: rgb(20, 20, 20);
+    --w3m-color-bg-2: rgb(39, 42, 42);
+    --w3m-color-bg-3: rgb(59, 64, 64);
+    // --w3m-color-overlay: rgba(255,255,255,0.1; 
+    // --w3m-color-err:rgb(242, 90, 103); 
+    // --w3m-color-success:rgb(38,181,98); 
+    // --w3m-gradient-1:#E8EBFD; 
+    // --w3m-gradient-2:#C653C6; 
+    // --w3m-gradient-3:#2DD2C5; 
+    // --w3m-gradient-4:#3D5CF5; 
+    // --w3m-modal-z-index:99999;
+}
+
+* {
+    // padding: 0;
+    // margin: 0;
+    font-family: Lato, sans-serif!important;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased!important;
+    -moz-osx-font-smoothing: grayscale!important;
+    font-smoothing: antialiased!important;
+    text-rendering: optimizeLegibility!important;
+    scrollbar-width: thin;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+    background: var(--page-bg);
+    color: var(--text);
+    // overflow-x: hidden;
+    overscroll-behavior-y: none;
+    background: var(--page-bg);
+    color: var(--text);
+    overflow-x: aoto;
+    overscroll-behavior-y: none;
+}
+
+.display_align {
+    display: flex;
+    align-items: center
+}
+
+.fontW700 {
+    font-weight: 700;
+}
+
+ul li {
+    list-style: none;
+    line-height: 1.5;
+}
+
+.cursor_pointer {
+    cursor: pointer;
+}
+
+.Tooltip_tooltipCursor {
+    cursor: help;
+}
+
+button {
+    appearance: auto;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: buttonface;
+    margin: 0em;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+    font-size: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+input {
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+
+//在style里面添加此段代码即可
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+h1,h2 {
+    color: var(--text);
+  }
+ 

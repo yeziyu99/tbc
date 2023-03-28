@@ -1,0 +1,267 @@
+.Header {
+    min-height: 64px;
+    //background: #000;
+    color: #fff;
+
+    .header_con {
+        background: 0 0;
+        /* background-color: var(--navbar-bg); */
+        border-bottom: 1px solid var(--panel-border);
+        color: var(--text);
+        padding: 4px 20px;
+        height: 64px;
+        margin: 0 auto;
+        position: relative;
+        width: 100%;
+        z-index: 999;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .header_logo {
+            img {
+                width: 32px;
+                margin-right: 14px;
+            }
+
+            span {
+                margin-bottom: 0;
+                font-weight: 600;
+                font-size: 24px;
+                margin-top: -3px;
+                color: var(--text);
+                opacity: 1;
+            }
+        }
+
+        .header_navbar {
+            .header_navbar_ulOne {
+                display: flex;
+                align-items: center;
+                padding: 0;
+                font-weight: 300;
+                font-size: 24px;
+                margin: 0 0 0 16px;
+                color: var(--text-light);
+                opacity: .9;
+
+                >li {
+                    font-size: 15px;
+                    padding: 16px 15px;
+                    cursor: pointer;
+                }
+
+                >li.li_nav {
+                    color: var(--text-description);
+                    opacity: 1;
+                }
+
+                >li:hover {
+                    color: var(--text-description);
+                }
+
+                .li_nav_duo {
+                    position: relative;
+                    font-size: 15px;
+                    padding: 16px 15px;
+                    background-color: transparent;
+                    color: var(--text-light);
+
+                    .hoverMenu {
+                        position: absolute;
+                        top: calc(100% - 12px);
+                        left: -8px;
+                        padding-top: 12px;
+                        z-index: 9999;
+                        border-radius: 10px;
+                        display: none;
+
+                        .hoverMenuContainer {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 16px;
+                            position: relative;
+                            padding: 24px;
+                            background-color: var(--toast-bg);
+                            box-shadow: 8px 16px 32px 8px var(--modal-shadow);
+                            border: 1px solid var(--modal-border);
+                            border-radius: 10px;
+
+                            .hoverMenuContainer_icon {
+                                position: absolute;
+                                width: 12px;
+                                height: 12px;
+                                -webkit-transform: rotate(45deg);
+                                transform: rotate(45deg);
+                                border-top: 1px solid var(--modal-border);
+                                border-left: 1px solid var(--modal-border);
+                                background-color: var(--toast-bg);
+                                top: -6px;
+                                left: 32px;
+                            }
+
+                            .hoverMenuContainer_list {
+                                display: flex;
+                                flex-direction: column;
+                                max-width: 120px;
+                                gap: 24px;
+
+                                >li {
+                                    width: 200px;
+                                    font-weight: 700;
+                                    color: var(--text);
+                                }
+
+                                >li:hover {
+                                    color: var(--text-description);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .header_icons {
+            position: relative;
+            margin: 0 0 0 20px;
+
+            .header_icons_btn {
+                border: 1px solid transparent;
+                width: 40px;
+                height: 40px;
+                background-color: transparent;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                padding: 0;
+                border-radius: 4px;
+
+                >span {
+                    left: 0;
+                    top: 0;
+                    display: block;
+                    width: 20px;
+                    height: 20px;
+                    background: url('../../assets/images/icons/cog.png') no-repeat;
+                    background-size: contain;
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+
+        }
+
+        .menu_btns {
+            margin-left: auto !important;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu_btns_ul {
+            margin-left: auto !important;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+            gap: 20px;
+
+            // li {
+            //     color: red;
+
+            //     // :global(.heaser_bbb){
+            //     //     color: aqua;
+            //     // }
+            //     // :global{
+            //     .heaser_bbb {
+            //         color: aqua;
+
+            //         w3m-connect-button {
+            //             color: red;
+
+            //             w3m-button-big {
+            //                 color: #fff;
+            //             }
+            //         }
+
+            //         // }
+            //     }
+            // }
+
+            .menu_btns_icon,
+            button {
+                box-sizing: border-box !important;
+                width: 150px;
+                height: 40px;
+                background: 0 0;
+                border-radius: 5px;
+                border: 1px solid var(--text-superlight);
+                color: var(--text-description);
+                font-size: 13px;
+                text-transform: none;
+                font-weight: 700;
+                line-height: 36px;
+
+                .icon-svg {
+                    height: 14px;
+                    width: 14px;
+                    display: inline-block;
+                    position: relative;
+                    left: 6px;
+                }
+
+                .icon-connect {
+                    background: url('../../assets/images/icons/connect-wallet.svg') no-repeat;
+                    top: 2px;
+                }
+            }
+
+            .menu_btns_icon:hover {
+                opacity: 0.85;
+            }
+
+            .menu_btns_select {
+                border: 1px solid var(--divider);
+                padding: 0 16px;
+                background-color: transparent;
+                border-radius: 5px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: var(--text-light);
+
+                .menu_btns_select_left {
+                    width: 20px;
+                }
+
+                .menu_btns_select_title {
+                    font-weight: 600;
+                    font-size: 13px;
+                    line-height: 24px;
+                }
+
+                .menu_btns_select_right {
+                    width: 10px
+                }
+            }
+
+            .menu_btns_select:hover {
+                background-color: var(--highlight-light);
+            }
+        }
+
+        .link_img {
+            margin-left: 4px;
+            width: 12px;
+        }
+
+        .display_inline_block {
+            display: inline-block !important;
+        }
+    }
+}

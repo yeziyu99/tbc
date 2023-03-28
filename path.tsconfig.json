@@ -1,0 +1,13 @@
+{
+    "extends": "./path.tsconfig.json",
+    
+    "compilerOptions": {
+      "baseUrl": "./",
+      "paths": {
+        "@/*": ["src/*"],
+        "@scss/*": ["src/assets/styles/*"]
+      }
+    }
+  }
+  
+  
