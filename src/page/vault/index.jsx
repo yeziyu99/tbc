@@ -7,13 +7,14 @@ import Gdai from '../../assets/images/icons/gdai.png'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { useNavigate, useLocation, useRouteMatch, useParams, } from 'react-router-dom'
 function Vault() {
-    console.log(useNavigate(),'pppp')
+    // console.log(,'pppp')
+    useNavigate('/')
     useEffect(() => {
 
     }, [])
     const [btnTag, setBtnTag] = useState('deposit');
-    const [title, setTitle] = useState(false);
-    const [title2, setTitle2] = useState(false);
+    const [title, setTitle] = useState(true);
+    const [title2, setTitle2] = useState(true);
     const [btnTagTwo, setBtnTagTwo] = useState('deposit');
     const [columnInput, setColumnInput] = useState(0);
     const [columnInput2, setColumnInput2] = useState(0);

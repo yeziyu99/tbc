@@ -1,7 +1,7 @@
 import React,{ useEffect } from 'react';
 import Header from './header';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import { useHistory, useLocation, useRouteMatch, useParams, } from 'react-router-dom'
+import {  useLocation, useRouteMatch, useParams, } from 'react-router-dom'
 // import './style/login.scss';
 function Layout(props) {
   // let history=useRouteMatch()
