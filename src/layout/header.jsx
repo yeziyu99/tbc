@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Router from '../router/index'
 import { useParams } from 'react-router-dom';
-// import { useParams} from "react-router-dom"
 
 
 
@@ -11,7 +10,22 @@ import ExternalLink from '../assets/images/external-link.png'
 import PolygonLogo from '../assets/images/icons/polygon_logo.svg'
 import DownArrow from '../assets/images/icons/down-arrow.png'
 import classNames from "classnames";
-import './style/header.scss'
+import style from "./style/header.scss";
+import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
+import { Web3Modal } from '@web3modal/react'
+import { configureChains, createClient, WagmiConfig } from 'wagmi'
+import { arbitrum, mainnet, polygon } from 'wagmi/chains'
+import{ Web3Button, Web3NetworkSwitch } from '@web3modal/react'
+const chains = [arbitrum, mainnet, polygon]
+const projectId = 'dba7331053371470365be9206718fb4d'
+
+const { provider } = configureChains(chains, [w3mProvider({ projectId })])
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors: w3mConnectors({ projectId, version: 1, chains }),
+  provider
+})
+const ethereumClient = new EthereumClient(wagmiClient, chains)
 // import { Web3Button } from '@web3modal/react'
 
 // function HomePage() {
@@ -19,8 +33,13 @@ import './style/header.scss'
 // }
 function Header(props) {
     useEffect(() => {
-        // a()
-        // console.log(props);
+        // setTimeout(() => {
+        //     let gtx = document.querySelector('w3m-connect-button');
+        //     let style = document.createElement("style");
+        //     style.innerHTML = `w3m-button-big{color: red;}`;
+        //     console.log(gtx)
+        //     // gtx.shadowRoot.appendChild(style);
+        // },200)
         
     }, [])
     // const { id } = useParams();
@@ -28,9 +47,6 @@ function Header(props) {
     // active:false
     const [routeName, setRouteName] = useState('');
     const [active, setActive] = useState(false);
-    const a = () => {
-        // console.log(122)
-    }
     const jumpFun = (route) => {
         // history.push('/questionnaire/createques')
         // if (this.$route.name != route) {
@@ -38,7 +54,9 @@ function Header(props) {
         // }
     }
     return (
-        <div className="Header">
+        <>
+      <WagmiConfig client={wagmiClient}>
+        <div  className="Header">
             <div className="header_con">
                 <div className="display_align" >
                     <div className="display_align header_logo" >
@@ -97,18 +115,20 @@ function Header(props) {
                 <div className="menu_btns">
                     <ul className="menu_btns_ul" >
                         <li>
-                            <button className="menu_btns_select cursor_pointer">
+                            <Web3NetworkSwitch className="heaser_bbb1"/>
+                            {/* <button className="menu_btns_select cursor_pointer">
                                 <img className="menu_btns_select_left" src={PolygonLogo} alt="" />
                                 <span className="menu_btns_select_title">Polygon</span>
                                 <img className="menu_btns_select_right" src={DownArrow} alt="" />
-                            </button>
+                            </button> */}
                         </li>
-                        <li style={{position: 'relative'}}>
-                            <button className="menu_btns_icon cursor_pointer">
+                        <li style={{position: 'relative'}} >
+                            <Web3Button className="heaser_bbb2"/>
+                            {/* <button className="menu_btns_icon cursor_pointer">
                                 <span>Connect</span>
                                 <span> Wallet</span>
                                 <span className="icon-svg icon-connect"></span>
-                            </button>
+                            </button> */}
                         </li>
                         {/* <Web3Button /> */}
                     </ul>
@@ -118,6 +138,9 @@ function Header(props) {
                 </div>
             </div>
         </div >
+      </WagmiConfig>
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+    </>
   );
 }
 

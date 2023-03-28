@@ -17,12 +17,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .header_logo{
-            img{
+
+        .header_logo {
+            img {
                 width: 32px;
                 margin-right: 14px;
             }
-            span{
+
+            span {
                 margin-bottom: 0;
                 font-weight: 600;
                 font-size: 24px;
@@ -31,8 +33,9 @@
                 opacity: 1;
             }
         }
-        .header_navbar{
-            .header_navbar_ulOne{
+
+        .header_navbar {
+            .header_navbar_ulOne {
                 display: flex;
                 align-items: center;
                 padding: 0;
@@ -41,25 +44,30 @@
                 margin: 0 0 0 16px;
                 color: var(--text-light);
                 opacity: .9;
-                >li{
-                    font-size:15px;
+
+                >li {
+                    font-size: 15px;
                     padding: 16px 15px;
                     cursor: pointer;
                 }
-                >li.li_nav{
+
+                >li.li_nav {
                     color: var(--text-description);
-                opacity: 1;
+                    opacity: 1;
                 }
+
                 >li:hover {
                     color: var(--text-description);
                 }
-                .li_nav_duo{
+
+                .li_nav_duo {
                     position: relative;
                     font-size: 15px;
                     padding: 16px 15px;
                     background-color: transparent;
                     color: var(--text-light);
-                    .hoverMenu{
+
+                    .hoverMenu {
                         position: absolute;
                         top: calc(100% - 12px);
                         left: -8px;
@@ -67,7 +75,8 @@
                         z-index: 9999;
                         border-radius: 10px;
                         display: none;
-                        .hoverMenuContainer{
+
+                        .hoverMenuContainer {
                             display: flex;
                             flex-direction: column;
                             gap: 16px;
@@ -77,7 +86,8 @@
                             box-shadow: 8px 16px 32px 8px var(--modal-shadow);
                             border: 1px solid var(--modal-border);
                             border-radius: 10px;
-                            .hoverMenuContainer_icon{
+
+                            .hoverMenuContainer_icon {
                                 position: absolute;
                                 width: 12px;
                                 height: 12px;
@@ -89,17 +99,20 @@
                                 top: -6px;
                                 left: 32px;
                             }
-                            .hoverMenuContainer_list{
+
+                            .hoverMenuContainer_list {
                                 display: flex;
                                 flex-direction: column;
                                 max-width: 120px;
                                 gap: 24px;
-                                >li{
+
+                                >li {
                                     width: 200px;
                                     font-weight: 700;
                                     color: var(--text);
                                 }
-                                >li:hover{
+
+                                >li:hover {
                                     color: var(--text-description);
                                 }
                             }
@@ -108,10 +121,12 @@
                 }
             }
         }
-        .header_icons{
+
+        .header_icons {
             position: relative;
             margin: 0 0 0 20px;
-            .header_icons_btn{
+
+            .header_icons_btn {
                 border: 1px solid transparent;
                 width: 40px;
                 height: 40px;
@@ -122,7 +137,8 @@
                 position: relative;
                 padding: 0;
                 border-radius: 4px;
-                >span{
+
+                >span {
                     left: 0;
                     top: 0;
                     display: block;
@@ -134,25 +150,51 @@
                     height: 24px;
                 }
             }
-            
+
         }
-        .menu_btns{
-            margin-left: auto!important;
+
+        .menu_btns {
+            margin-left: auto !important;
             display: flex;
             align-items: center;
             margin: 0;
             padding: 0;
         }
-        .menu_btns_ul{
-            margin-left: auto!important;
+
+        .menu_btns_ul {
+            margin-left: auto !important;
             display: flex;
             align-items: center;
             margin: 0;
             padding: 0;
             flex-wrap: wrap;
             gap: 20px;
-            .menu_btns_icon{
-                box-sizing: border-box!important;
+
+            // li {
+            //     color: red;
+
+            //     // :global(.heaser_bbb){
+            //     //     color: aqua;
+            //     // }
+            //     // :global{
+            //     .heaser_bbb {
+            //         color: aqua;
+
+            //         w3m-connect-button {
+            //             color: red;
+
+            //             w3m-button-big {
+            //                 color: #fff;
+            //             }
+            //         }
+
+            //         // }
+            //     }
+            // }
+
+            .menu_btns_icon,
+            button {
+                box-sizing: border-box !important;
                 width: 150px;
                 height: 40px;
                 background: 0 0;
@@ -163,6 +205,7 @@
                 text-transform: none;
                 font-weight: 700;
                 line-height: 36px;
+
                 .icon-svg {
                     height: 14px;
                     width: 14px;
@@ -170,15 +213,18 @@
                     position: relative;
                     left: 6px;
                 }
-                .icon-connect{
+
+                .icon-connect {
                     background: url('../../assets/images/icons/connect-wallet.svg') no-repeat;
                     top: 2px;
                 }
             }
-            .menu_btns_icon:hover{
+
+            .menu_btns_icon:hover {
                 opacity: 0.85;
             }
-            .menu_btns_select{
+
+            .menu_btns_select {
                 border: 1px solid var(--divider);
                 padding: 0 16px;
                 background-color: transparent;
@@ -188,27 +234,33 @@
                 align-items: center;
                 gap: 8px;
                 color: var(--text-light);
-                .menu_btns_select_left{
+
+                .menu_btns_select_left {
                     width: 20px;
                 }
-                .menu_btns_select_title{
+
+                .menu_btns_select_title {
                     font-weight: 600;
                     font-size: 13px;
                     line-height: 24px;
                 }
-                .menu_btns_select_right{
+
+                .menu_btns_select_right {
                     width: 10px
                 }
             }
-            .menu_btns_select:hover{
+
+            .menu_btns_select:hover {
                 background-color: var(--highlight-light);
             }
         }
-        .link_img{
+
+        .link_img {
             margin-left: 4px;
             width: 12px;
         }
-        .display_inline_block{
+
+        .display_inline_block {
             display: inline-block !important;
         }
     }

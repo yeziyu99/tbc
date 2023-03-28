@@ -42,6 +42,10 @@
     // 指定允许 ts 处理的目录
     "include": [
         "src"
-    ]
+    ],
+    "baseUrT":"/",
+    "paths":{
+        "@/*":["src/*"]
+    }
     // "compilerOptions": {}
 }
