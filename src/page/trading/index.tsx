@@ -1,10 +1,12 @@
 import React from 'react';
 import HomePage from './indexq';
 import ReactKline from '../kline';
+// import HomePage from './indexq';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/react'
 import { configureChains, createClient, WagmiConfig } from 'wagmi'
 import { arbitrum, mainnet, polygon } from 'wagmi/chains'
+import{ Web3Button, Web3NetworkSwitch } from '@web3modal/react'
 const chains = [arbitrum, mainnet, polygon]
 const projectId = 'dba7331053371470365be9206718fb4d'
 
@@ -37,10 +39,12 @@ function Trading() {
           debug={false}
           onRequestData={onRequestData}
       />
-      {/* <WagmiConfig client={wagmiClient}>
-        <HomePage />
+      <WagmiConfig client={wagmiClient}>
+        {/* <Web3NetworkSwitch /> */}
+        <Web3Button />
       </WagmiConfig>
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} /> */}
+
+      {/* <Web3Modal projectId={projectId} ethereumClient={ethereumClient} /> */}
     </>
   );
 }

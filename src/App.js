@@ -1,36 +1,26 @@
 // import logo from './logo.svg';
-import Layout from './layout/layout.jsx';
-import './App.css';
+import Layout from "./layout/layout.jsx";
+import "./App.css";
 // import Login from './page/login/login'
-import { Route,BrowserRouter } from 'react-router-dom'
+import { Route, BrowserRouter, renderRoutes, Routes } from "react-router-dom";
 
-import { withRouter } from 'react-router-dom'
-import Router from './router/index'
+import Router from "./router/index";
 function App() {
-  const element = withRouter(Router)
   return (
     <div className="App">
-
-    <Layout></Layout>
-    <Router></Router>
-    {/* <Router></Router> */}
-    {/* {element} */}
-    {/* <BrowserRouter></BrowserRouter> */}
-      {/* <Login></Login> */}
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+      <Layout></Layout>
+      <Routes>
+        {Router.map((item) => {
+          return (
+            <Route
+              element={<item.component />}
+              key={item.path}
+              path={item.path}
+              exact
+            ></Route>
+          );
+        })}
+      </Routes>
     </div>
   );
 }

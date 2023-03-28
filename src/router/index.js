@@ -6,39 +6,26 @@ import Layout from '../layout/layout'
 // 导入路由依赖
 import { Route,BrowserRouter } from 'react-router-dom'
 
-// const Router=[
-//   {
-//     path:'/',
-//     name:'Trading',
-//     // element:<Trading />,
-//     component:Trading
-//   },
-//   {
-//     path:'/Vault',
-//     name:'Vault',
-//     // element:<Vault />,
-//     component:Vault
-//     // children:[]
-//   },
-// ]
-//  export default Router
+const Router=[
+  {
+    path:'/',
+    name:'Trading',
+    element:<Trading />,
+    component:Trading,
+    meta:{title:'222222222' }
+  },
+  {
+    path:'/Vault',
+    name:'Vault',
+    element:<Vault />,
+    component:Vault,
+    children:[]
+  },
+]
+ export default Router
 
 
  
-export default class index extends Component {
-  render() {
-    return (
-        // 使用BrowserRouter包裹，配置路由
-      <BrowserRouter>
-         {/* 使用/配置路由默认页；exact严格匹配 */}
-        <Route render={props=><Trading {...props} />} path='/' exact></Route>
-        <Route render={props=><Vault {...props} />} path='/Vault'></Route>
-        <Route render={props=><Layout {...props} />} path='/Layout'></Route>
-        <Route render={props=><Trading {...props} />} path='/Trading'></Route>
-      </BrowserRouter>
-    )
-  }
-}
 // export default class index extends Component {
 //   render() {
 //     return (

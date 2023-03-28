@@ -20,9 +20,9 @@ import { useWeb3Modal } from "@web3modal/react";
 // Default chain will be `mainnet` or first wagmi chain in config if `mainnet` is not available.
 // setDefaultChain(polygon);
 function HomePage() {
-  const { isOpen, open, close, setDefaultChain } = useWeb3Modal();
-  console.log(isOpen);
-  console.log(useWeb3Modal(),'useWeb3Modal');
+  // const { isOpen, open, close, setDefaultChain } = useWeb3Modal();
+  // console.log(isOpen);
+  // console.log(useWeb3Modal(),'useWeb3Modal');
   return <Web3Button />
 }
 export default HomePage;
