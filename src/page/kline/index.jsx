@@ -22,8 +22,8 @@ class ReactKline extends React.Component {
             ranges: ["1w", "1d", "1h", "30m", "15m", "5m", "1m", "line"],
             symbol: "BTC",
             symbolName: "BTC/USD",
-            limit: 1000,
-            intervalTime: 5000,
+            limit: 600,
+            intervalTime: 10000,
             debug: false,
             depthWidth: 50,
         };
@@ -31,23 +31,23 @@ class ReactKline extends React.Component {
         this.state.kline = new Kline(cfg);
         this.state.kline.draw();
     }
-
+    // 设置画布大小
     resize(w,h){
         this.state.kline.resize(w, h);
     }
-
+    // 设置交易品种
     setSymbol(symbol,symbolName){
         this.state.kline.setSymbol(symbol,symbolName);
     }
-
+    // 设置主题
     setTheme(style){
         this.state.kline.setTheme(style);
     }
-
+    // 设置语言
     setLanguage(lang){
         this.state.kline.setLanguage(lang);
     }
-
+    // 设置请求间隔时间(ms)
     setIntervalTime(intervalTime){
         this.state.kline.setIntervalTime(intervalTime);
     }
@@ -198,7 +198,7 @@ class ReactKline extends React.Component {
                         <div id="chart_updated_time">
                             <div id="sizeIcon" className="chart_BoxSize"></div>
                         </div>
-                        <div id="chart_show_depth" className="chart_toolbar_button chart_str_depth_cap">深度图</div>
+                        {/* <div id="chart_show_depth" className="chart_toolbar_button chart_str_depth_cap">深度图</div> */}
                     </div>
                     <div id="chart_toolpanel">
                         <div className="chart_toolpanel_separator"></div>

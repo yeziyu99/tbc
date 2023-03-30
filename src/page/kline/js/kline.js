@@ -20,7 +20,7 @@ export default class Kline {
         this.symbolName = "";
         this.range = null;
         this.url = "";
-        this.limit = 1000;
+        this.limit = 3000;
         this.intervalTime = 5000;
         this.debug = true;
         this.language = "zh-cn";
@@ -69,7 +69,6 @@ export default class Kline {
         this.onRequestData=null;
 
         Object.assign(this, option);
-
         if (!Kline.created) {
             Kline.instance = this;
             Kline.created = true;
@@ -81,10 +80,10 @@ export default class Kline {
     /*********************************************
      * Methods
      *********************************************/
-
+    // 画
     draw() {
         Kline.chartMgr = new ChartManager();
-
+        // 创建时间
         let view = $(this.element);
         for (let k in this.ranges) {
             let res = $(view).find('[name="' + this.ranges[k] + '"]');
@@ -92,13 +91,17 @@ export default class Kline {
                 $(e).attr("style", "display:inline-block");
             });
         }
-
+        // 刷新时间图
         setInterval(Control.refreshFunction, this.intervalTime);
+        // 绑定鼠标事件
         this.registerMouseEvent();
+        // 画图
         ChartManager.instance.bindCanvas("main", document.getElementById("chart_mainCanvas"));
         ChartManager.instance.bindCanvas("overlay", document.getElementById("chart_overlayCanvas"));
+
         Control.refreshTemplate();
         Control.onSize(this.width, this.height);
+
         Control.readCookie();
 
         this.setTheme(this.theme);
@@ -107,37 +110,37 @@ export default class Kline {
 
         $(this.element).css({visibility: "visible"});
     }
-
+    // 调整
     resize(width, height) {
         this.width = width;
         this.height = height;
         Control.onSize(this.width, this.height);
     }
-
+    // 设置 symbol
     setSymbol(symbol, symbolName) {
         this.symbol = symbol;
         this.symbolName = symbolName;
         Control.switchSymbol(symbol,symbolName);
         this.onSymbolChangeFunc(symbol, symbolName);
     }
-
+    // 设置主题
     setTheme(style) {
         this.theme = style;
         Control.switchTheme(style);
     }
-
+    // 设置语言
     setLanguage(lang) {
         this.language = lang;
         Control.chartSwitchLanguage(lang);
     }
-
+    // 设置间隔时间
     setIntervalTime(intervalTime) {
         this.intervalTime = intervalTime;
         if (this.debug) {
             console.log('DEBUG: interval time changed to ' + intervalTime);
         }
     }
-
+    // 设置深度宽度
     setDepthWidth(width){
         this.depthWidth = width;
         ChartManager.instance.redraw('All', false);
@@ -146,49 +149,49 @@ export default class Kline {
     /*********************************************
      * Events
      *********************************************/
-
+    // 画布尺寸改变时触发
     onResizeFunc(width, height) {
         if (this.debug) {
             console.log("DEBUG: chart resized to width: " + width + " height: " + height);
         }
         this.onResize && this.onResize(width,height);
     }
-
+    // 语言改变时触发
     onLangChangeFunc(lang) {
         if (this.debug) {
             console.log("DEBUG: language changed to " + lang);
         }
         this.onLangChange && this.onLangChange(lang);
     }
-
+    // 交易品种改变时触发
     onSymbolChangeFunc(symbol, symbolName) {
         if (this.debug) {
             console.log("DEBUG: symbol changed to " + symbol + " " + symbolName);
         }
         this.onSymbolChange && this.onSymbolChange(symbol,symbolName);
     }
-
+    // 主题改变时触发
     onThemeChangeFunc(theme) {
         if (this.debug) {
             console.log("DEBUG: themes changed to : " + theme);
         }
         this.onThemeChange && this.onThemeChange(theme);
     }
-
+    // 聚合时间改变时触发
     onRangeChangeFunc(range) {
         if (this.debug) {
             console.log("DEBUG: range changed to " + range);
         }
         this.onRangeChange && this.onRangeChange(range);
     }
-
+    // 请求数据时触发
     onRequestDataFunc(param,callback){
         if (this.debug) {
             console.log("DEBUG: request data to " + JSON.stringify(param));
         }
         this.onRequestData && this.onRequestData(param,callback);
     }
-
+    // 注册鼠标事件
     registerMouseEvent() {
         $(document).ready(function () {
             function __resize() {
@@ -268,14 +271,14 @@ export default class Kline {
             $("#chart_toolbar_periods_vert ul a").click(function () {
                 Control.switchPeriod($(this).parent().attr('name'));
             });
-            $("#chart_show_depth")
-                .click(function(){
-                    if($(this).hasClass('selected')){
-                        Control.switchDepth("off");
-                    }else{
-                        Control.switchDepth("on");
-                    }
-                });
+            // $("#chart_show_depth")
+            //     .click(function(){
+            //         if($(this).hasClass('selected')){
+            //             Control.switchDepth("off");
+            //         }else{
+            //             Control.switchDepth("on");
+            //         }
+            //     });
             $("#chart_show_tools")
                 .click(function () {
                     if ($(this).hasClass('selected')) {
