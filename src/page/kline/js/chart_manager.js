@@ -14,6 +14,7 @@ import {Util} from './util'
 import $ from 'jquery'
 require('jquery-mousewheel');
 
+// 表管理器
 export class ChartManager {
     constructor() {
         this._dataSources = {};

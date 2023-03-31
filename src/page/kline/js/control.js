@@ -6,7 +6,7 @@ import {MEvent} from './mevent'
 import $ from 'jquery'
 
 export class Control {
-
+    // 刷新功能
     static refreshFunction() {
         Control.refreshCounter++;
         let lang = ChartManager.instance.getLanguage();
@@ -36,7 +36,7 @@ export class Control {
             }
         }
     }
-
+    // 清除刷新计数器
     static clearRefreshCounter() {
         window.clearInterval(Control.refreshHandler);
         Control.refreshCounter = 0;
@@ -48,14 +48,14 @@ export class Control {
         }
         Control.refreshHandler = setInterval(Control.refreshFunction, Kline.instance.intervalTime);
     }
-
+    // 请求数据
     static requestData(showLoading) {
         window.clearTimeout(Kline.instance.timer);
         if (showLoading === true) {
             $("#chart_loading").addClass("activated");
         }
         Kline.instance.onRequestDataFunc(Kline.instance.requestParam,function(res){
-            if(res && res.success){
+            if(res && res.is_succ){
                 Control.requestSuccessHandler(res);
             }else{
                 if (Kline.instance.debug) {
@@ -67,7 +67,7 @@ export class Control {
             }
         })
     }
-
+    // 请求成功处理程序
     static requestSuccessHandler(res) {
         if (Kline.instance.debug) {
             console.log(res);
@@ -77,9 +77,9 @@ export class Control {
         let chart = ChartManager.instance.getChart();
         chart.setTitle();
         Kline.instance.data = eval(res.data);
-
+        console.log(res.data);
         let updateDataRes = Kline.instance.chartMgr.updateData("frame0.k0", Kline.instance.data.lines);
-        Kline.instance.requestParam = Control.setHttpRequestParam(Kline.instance.symbol, Kline.instance.range, null, Kline.instance.chartMgr.getDataSource("frame0.k0").getLastDate());
+        Kline.instance.requestParam = Control.setHttpRequestParam(Kline.instance.symbol, Kline.instance.range, 3000, Kline.instance.chartMgr.getDataSource("frame0.k0").getLastDate());
 
         let intervalTime = Kline.instance.intervalTime < Kline.instance.range ? Kline.instance.intervalTime : Kline.instance.range;
 
@@ -90,15 +90,15 @@ export class Control {
 
         let tmp = ChartSettings.get();
         //画深度图
-        if (Kline.instance.data.depths && tmp.charts.depthStatus==="open") {
-            ChartManager.instance.getChart().updateDepth(Kline.instance.data.depths);
-        }
+        // if (Kline.instance.data.depths && tmp.charts.depthStatus==="open") {
+        //     ChartManager.instance.getChart().updateDepth(Kline.instance.data.depths);
+        // }
         Control.clearRefreshCounter();
 
         Kline.instance.timer = setTimeout(Control.TwoSecondThread, intervalTime);
         ChartManager.instance.redraw('All', false);
     }
-
+    // 二秒螺纹
     static TwoSecondThread() {
         let f = Kline.instance.chartMgr.getDataSource("frame0.k0").getLastDate();
         if (f === -1) {
@@ -108,7 +108,7 @@ export class Control {
         }
         Control.requestData();
     }
-
+    // 读取cookie
     static readCookie() {
         ChartSettings.get();
         ChartSettings.save();
@@ -162,27 +162,27 @@ export class Control {
         // 语言
         Control.chartSwitchLanguage(tmp.language || "zh-cn");
         // 深度图
-        if(tmp.charts.depthStatus==="close"){
-            Control.switchDepth("off")
-        }else if(tmp.charts.depthStatus==="open"){
-            Control.switchDepth("on");
-        }
+        // if(tmp.charts.depthStatus==="close"){
+        //     Control.switchDepth("off")
+        // }else if(tmp.charts.depthStatus==="open"){
+        //     Control.switchDepth("on");
+        // }
     }
 
-    static setHttpRequestParam(symbol, range, limit, since) {
+    static setHttpRequestParam(symbol, range, limit, stop_time) {
         return {
             symbol : symbol,
-            range : range,
+            type : parseInt((range % (1000 * 60 * 60)) / (1000 * 60)),
             limit : limit,
-            since : since
+            stop_time : stop_time
         }
     }
-
+    // 更新的模板
     static refreshTemplate() {
         Kline.instance.chartMgr = DefaultTemplate.loadTemplate("frame0.k0", "");
         ChartManager.instance.redraw('All', true);
     }
-
+    // 切换语言
     static chartSwitchLanguage(lang) {
         let langTmp = lang.replace(/-/, '_');
         $('#chart_language_switch_tmp').find('span').each(function () {
@@ -206,7 +206,7 @@ export class Control {
         ChartSettings.save();
         Kline.instance.onLangChangeFunc(lang);
     }
-
+    // 设置大小？
     static onSize(w, h) {
         let width = w || window.innerWidth;
         let chartWidth=width;
@@ -345,7 +345,7 @@ export class Control {
         ChartManager.instance.redraw("All", true);
         return false;
     }
-
+    // 鼠标滚轮
     static switchTheme(name) {
         $('#chart_toolbar_theme a').removeClass('selected');
         $('#chart_select_theme a').removeClass('selected');
@@ -385,7 +385,7 @@ export class Control {
 
         Kline.instance.onThemeChangeFunc(name);
     }
-
+    // 切换工具
     static switchTools(name) {
         $(".chart_dropdown_data").removeClass("chart_dropdown-hover");
         $("#chart_toolpanel .chart_toolpanel_button").removeClass("selected");
@@ -451,7 +451,7 @@ export class Control {
             Control.onSize(Kline.instance.width, Kline.instance.height);
         }
     }
-
+    // 开关周期
     static switchPeriod(name) {
         $(".chart_container .chart_toolbar_tabgroup a").removeClass("selected");
         $("#chart_toolbar_periods_vert ul a").removeClass("selected");
@@ -484,25 +484,25 @@ export class Control {
         settings.charts.period = name;
         ChartSettings.save();
     }
-
-    static switchDepth(name){
-        let tmp = ChartSettings.get();
-        if(name==="on"){
-            tmp.charts.depthStatus="open";
-            $("#chart_show_depth").addClass("selected");
-            ChartManager.instance.getChart().updateDepth(Kline.instance.data.depths);
-        }else if(name==="off"){
-            tmp.charts.depthStatus="close";
-            $("#chart_show_depth").removeClass("selected");
-            ChartManager.instance.getChart().updateDepth(null);
-        }
-        ChartSettings.save();
-    }
-
+    // 开关深度
+    // static switchDepth(name){
+    //     let tmp = ChartSettings.get();
+    //     if(name==="on"){
+    //         tmp.charts.depthStatus="open";
+    //         $("#chart_show_depth").addClass("selected");
+    //         // ChartManager.instance.getChart().updateDepth(Kline.instance.data.depths);
+    //     }else if(name==="off"){
+    //         tmp.charts.depthStatus="close";
+    //         $("#chart_show_depth").removeClass("selected");
+    //         // ChartManager.instance.getChart().updateDepth(null);
+    //     }
+    //     ChartSettings.save();
+    // }
+    // 重置
     static reset(symbol) {
         Kline.instance.symbol = symbol;
     }
-
+    // 开关符号选定
     static switchSymbolSelected(symbol,symbolName) {
         Control.reset(symbol);
         $(".symbol-title").text(symbolName);
@@ -511,7 +511,7 @@ export class Control {
         settings.charts.symbol = symbol;
         ChartSettings.save();
     }
-
+    // 开关的象征
     static switchSymbol(symbol,symbolName) {
         if (Kline.instance.type === "stomp" && Kline.instance.stompClient.ws.readyState === 1) {
             Kline.instance.subscribed.unsubscribe();
@@ -528,7 +528,7 @@ export class Control {
         }
         ChartManager.instance.getChart().setSymbol(symbol);
     }
-
+    // 权重
     static calcPeriodWeight(period) {
         let index = period;
         if (period !== 'line')

@@ -31,12 +31,12 @@ export class Chart {
         ChartManager.instance.setTitle('frame0.k0', title);
     }
 
-
+    // 设置标志
     setSymbol(symbol) {
         this._symbol = symbol;
         this.updateDataAndDisplay();
     }
-
+    // 更新数据和显示
     updateDataAndDisplay() {
         Kline.instance.symbol = this._symbol;
         Kline.instance.range = this._range;
@@ -47,13 +47,13 @@ export class Chart {
             Kline.instance.requestParam = Control.setHttpRequestParam(Kline.instance.symbol, Kline.instance.range, Kline.instance.limit, null);
             Control.requestData(true);
         } else {
-            Kline.instance.requestParam = Control.setHttpRequestParam(Kline.instance.symbol, Kline.instance.range, null, f.toString());
+            Kline.instance.requestParam = Control.setHttpRequestParam(Kline.instance.symbol, Kline.instance.range, Kline.instance.limit, f.toString());
             Control.requestData();
         }
         ChartManager.instance.redraw('All', false);
     }
 
-
+    // 设置现行合约单位
     setCurrentContractUnit(contractUnit) {
         this._contract_unit = contractUnit;
         this.updateDataAndDisplay();

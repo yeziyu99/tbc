@@ -83,11 +83,13 @@ export class MainDataSource extends DataSource {
     }
 
     getLastDate() {
-        let count = this.getDataCount();
-        if (count < 1) {
-            return -1;
-        }
-        return this.getDataAt(count - 1).date;
+        // let count = this.getDataCount();
+        // if (count < 1) {
+        //     return -1;
+        // }
+        let time = new Date().valueOf()
+        // return this.getDataAt(count - 1).date;
+        return time
     }
 
     getDataAt(index) {
