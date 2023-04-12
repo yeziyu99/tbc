@@ -6,8 +6,8 @@ import './style/header.scss';
 //图片引入
 import Logo from '../assets/images/logo.png'
 import ExternalLink from '../assets/images/external-link.png'
-import PolygonLogo from '../assets/images/icons/polygon_logo.svg'
-import DownArrow from '../assets/images/icons/down-arrow.png'
+// import PolygonLogo from '../assets/images/icons/polygon_logo.svg'
+// import DownArrow from '../assets/images/icons/down-arrow.png'
 //class引入 可以判断的class名
 import classNames from "classnames";
 // web3modal引入需要
