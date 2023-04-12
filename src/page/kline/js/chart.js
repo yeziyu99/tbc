@@ -34,6 +34,7 @@ export class Chart {
     // 设置标志
     setSymbol(symbol) {
         this._symbol = symbol;
+        console.log(1111)
         this.updateDataAndDisplay();
     }
     // 更新数据和显示
@@ -43,6 +44,7 @@ export class Chart {
         ChartManager.instance.setCurrentDataSource('frame0.k0', this._symbol + '.' + this._range);
         ChartManager.instance.setNormalMode();
         let f = Kline.instance.chartMgr.getDataSource("frame0.k0").getLastDate();
+        console.log(f, 'f')
         if (f === -1) {
             Kline.instance.requestParam = Control.setHttpRequestParam(Kline.instance.symbol, Kline.instance.range, Kline.instance.limit, null);
             Control.requestData(true);
@@ -55,17 +57,21 @@ export class Chart {
 
     // 设置现行合约单位
     setCurrentContractUnit(contractUnit) {
+        console.log(222)
         this._contract_unit = contractUnit;
         this.updateDataAndDisplay();
     }
-
+    // 设置当前货币类型
     setCurrentMoneyType(moneyType) {
+        console.log(333);
         this._money_type = moneyType;
         this.updateDataAndDisplay();
     }
-
+    // 设置周期
     setCurrentPeriod(period) {
+        // Kline.instance.periodMap[period] 当前间隔时间
         this._range = Kline.instance.periodMap[period];
+        console.log(Kline.instance);
         if (Kline.instance.type === "stomp" && Kline.instance.stompClient.ws.readyState === 1) {
             Kline.instance.subscribed.unsubscribe();
             Kline.instance.subscribed = Kline.instance.stompClient.subscribe(Kline.instance.subscribePath + '/' + Kline.instance.symbol + '/' + this._range, Control.subscribeCallback);
@@ -73,57 +79,57 @@ export class Chart {
         this.updateDataAndDisplay();
         Kline.instance.onRangeChangeFunc(this._range);
     }
-
+    // 更新数据源
     updateDataSource(data) {
         this._data = data;
         ChartManager.instance.updateData("frame0.k0", this._data);
     }
 
-    updateDepth(array) {
-        if (array == null) {
-            this._depthData.array = [];
-            ChartManager.instance.redraw('All', false);
-            return;
-        }
-        if (!array.asks || !array.bids || array.asks === '' || array.bids === '')
-            return;
-        let _data = this._depthData;
-        _data.array = [];
-        for (let i = 0; i < array.asks.length; i++) {
-            let data = {};
-            data.rate = array.asks[i][0];
-            data.amount = array.asks[i][1];
-            _data.array.push(data);
-        }
-        for (let i = 0; i < array.bids.length; i++) {
-            let data = {};
-            data.rate = array.bids[i][0];
-            data.amount = array.bids[i][1];
-            _data.array.push(data);
-        }
-        _data.asks_count = array.asks.length;
-        _data.bids_count = array.bids.length;
-        _data.asks_si = _data.asks_count - 1;
-        _data.asks_ei = 0;
-        _data.bids_si = _data.asks_count - 1;
-        _data.bids_ei = _data.asks_count + _data.bids_count - 2;
-        for (let i = _data.asks_si; i >= _data.asks_ei; i--) {
-            if (i === _data.asks_si && _data.array[i] !== undefined) {
-                _data.array[i].amounts = _data.array[i].amount;
-            } else if(_data.array[i + 1] !== undefined) {
-                _data.array[i].amounts = _data.array[i + 1].amounts + _data.array[i].amount;
-            }
-        }
-        for (let i = _data.bids_si; i <= _data.bids_ei; i++) {
-            if (i === _data.bids_si && _data.array[i] !== undefined) {
-                _data.array[i].amounts = _data.array[i].amount;
-            } else if (_data.array[i - 1] !== undefined) {
-                _data.array[i].amounts = _data.array[i - 1].amounts + _data.array[i].amount;
-            }
-        }
-        ChartManager.instance.redraw('All', false);
-    }
-
+    /* updateDepth(array) {
+    //     if (array == null) {
+    //         this._depthData.array = [];
+    //         ChartManager.instance.redraw('All', false);
+    //         return;
+    //     }
+    //     if (!array.asks || !array.bids || array.asks === '' || array.bids === '')
+    //         return;
+    //     let _data = this._depthData;
+    //     _data.array = [];
+    //     for (let i = 0; i < array.asks.length; i++) {
+    //         let data = {};
+    //         data.rate = array.asks[i][0];
+    //         data.amount = array.asks[i][1];
+    //         _data.array.push(data);
+    //     }
+    //     for (let i = 0; i < array.bids.length; i++) {
+    //         let data = {};
+    //         data.rate = array.bids[i][0];
+    //         data.amount = array.bids[i][1];
+    //         _data.array.push(data);
+    //     }
+    //     _data.asks_count = array.asks.length;
+    //     _data.bids_count = array.bids.length;
+    //     _data.asks_si = _data.asks_count - 1;
+    //     _data.asks_ei = 0;
+    //     _data.bids_si = _data.asks_count - 1;
+    //     _data.bids_ei = _data.asks_count + _data.bids_count - 2;
+    //     for (let i = _data.asks_si; i >= _data.asks_ei; i--) {
+    //         if (i === _data.asks_si && _data.array[i] !== undefined) {
+    //             _data.array[i].amounts = _data.array[i].amount;
+    //         } else if(_data.array[i + 1] !== undefined) {
+    //             _data.array[i].amounts = _data.array[i + 1].amounts + _data.array[i].amount;
+    //         }
+    //     }
+    //     for (let i = _data.bids_si; i <= _data.bids_ei; i++) {
+    //         if (i === _data.bids_si && _data.array[i] !== undefined) {
+    //             _data.array[i].amounts = _data.array[i].amount;
+    //         } else if (_data.array[i - 1] !== undefined) {
+    //             _data.array[i].amounts = _data.array[i - 1].amounts + _data.array[i].amount;
+    //         }
+    //     }
+    //     ChartManager.instance.redraw('All', false);
+    // }*/
+    // 设置主指示灯
     setMainIndicator(indicName) {
         this._mainIndicator = indicName;
         if (indicName === 'NONE') {
@@ -133,7 +139,7 @@ export class Chart {
         }
         ChartManager.instance.redraw('All', true);
     }
-
+    // 设置指标
     setIndicator(index, indicName) {
         if (indicName === 'NONE') {
             /*
@@ -161,12 +167,12 @@ export class Chart {
         }
         ChartManager.instance.redraw('All', true);
     }
-
+    // 添加指标
     addIndicator(indicName) {
         ChartManager.instance.addIndicator(indicName);
         ChartManager.instance.redraw('All', true);
     }
-
+    // 删除指标
     removeIndicator(indicName) {
         let areaName = ChartManager.instance.getIndicatorAreaName(2);
         ChartManager.instance.removeIndicator(areaName);

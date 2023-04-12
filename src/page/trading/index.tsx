@@ -9,6 +9,7 @@ import { arbitrum, mainnet, polygon } from 'wagmi/chains'
 import{ Web3Button, Web3NetworkSwitch } from '@web3modal/react'
 import { useEffect, useState } from 'react';
 import { getDataList } from "../../http/index";
+// import { createWebSocket, closeWebSocket} from '../kline/js/websock';
 
 const chains = [arbitrum, mainnet, polygon]
 const projectId = 'dba7331053371470365be9206718fb4d'
@@ -21,10 +22,57 @@ const wagmiClient = createClient({
 })
 const ethereumClient = new EthereumClient(wagmiClient, chains)
 
-function onRequestData(param:any,callback:any) {
-    // console.log(param);
-    getDataList(param).then(res => {
-      // console.log(res.data)
+
+
+function Trading() {
+  const [windowSize, setWindowSize] = useState(getWindowSize());
+  let klinesData = {}
+  let params = {
+    symbol: 'AUDJPY',
+    type: 15,
+    limit: 600,
+    stop_time: 1680511864020
+  }
+  
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+    // setKlinesData(() => {
+    //   return getKlinesData()
+    // })
+    getKlinesData()
+    
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
+
+  function onRequestData(param:any,callback:any) {
+    console.log(param, 'param');
+    
+    // 判断请求参数（品种和type的变化，如果变化需要重新获取历史记录）
+    if (params.symbol !== param.symbol || params.type != param.type) {
+      params = {...param}
+      getKlinesData()
+    }
+    
+    // setParams(param)
+    callback(klinesData)
+  }
+
+  function getWindowSize() {
+    const {innerWidth, innerHeight} = window;
+    return {innerWidth: innerWidth - 300, innerHeight: innerHeight - 260};
+  }
+  async function getKlinesData() {
+    let obj: any = {}
+    let res = await getDataList(params);
+    if (res) {
+      console.log(res);
       let arr: any = []
       res.data.data.records.map( (item: any) => {
         let line: any = []
@@ -39,24 +87,10 @@ function onRequestData(param:any,callback:any) {
         arr.push(line)
       })
       res.data.data.lines = arr.reverse()
-      callback(res.data)
-    })
-}
-
-function Trading() {
-  const [windowSize, setWindowSize] = useState(getWindowSize());
-
-  useEffect(() => {
-    function handleWindowResize() {
-      setWindowSize(getWindowSize());
+      obj = res.data  
+      klinesData = obj
     }
-
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, []);
+  }
   return (
     <>
       <ReactKline
@@ -65,7 +99,7 @@ function Trading() {
           ranges={["1w", "1d", "1h", "30m", "15m", "5m", "1m", "line"]}
           symbol={"AUDJPY"}
           symbolName={"AUDJPY/USD"}
-          intervalTime={300000}
+          intervalTime={1000}
           depthWidth={100}
           debug={false}
           onRequestData={onRequestData}
@@ -80,10 +114,7 @@ function Trading() {
   );
 }
 
-function getWindowSize() {
-  const {innerWidth, innerHeight} = window;
-  return {innerWidth: innerWidth - 300, innerHeight: innerHeight - 260};
-}
+
 
 
 export default Trading;

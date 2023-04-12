@@ -92,7 +92,8 @@ export default class Kline {
             });
         }
         // 刷新时间图
-        setInterval(Control.refreshFunction, this.intervalTime);
+        // setInterval(Control.refreshFunction, this.intervalTime);
+        Control.refreshFunction()
         // 绑定鼠标事件
         this.registerMouseEvent();
         // 画图

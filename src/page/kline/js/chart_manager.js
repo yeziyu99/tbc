@@ -49,7 +49,7 @@ export class ChartManager {
         }
         return ChartManager.instance;
     }
-
+    // 重绘
     redraw(layer, refresh) {
         if (layer === undefined || refresh) {
             layer = "All";
@@ -67,7 +67,7 @@ export class ChartManager {
         }
     }
 
-
+    // 结合帆布
     bindCanvas(layer, canvas) {
         if (layer === "main") {
             this._mainCanvas = canvas;
@@ -80,11 +80,11 @@ export class ChartManager {
             }
         }
     }
-
+    // 获取直接抓取鼠标滚轮
     getCaptureMouseWheelDirectly() {
         return this._captureMouseWheelDirectly;
     }
-
+    // 设置直接抓取鼠标滚轮
     setCaptureMouseWheelDirectly(v) {
         this._captureMouseWheelDirectly = v;
         if (v)
@@ -92,7 +92,7 @@ export class ChartManager {
         else
             $(this._overlayCanvas).unbind('mousewheel');
     }
-
+    // 获取图
     getChart(nouseParam) {
         return this._chart["defaultFrame"];
     }
@@ -105,7 +105,7 @@ export class ChartManager {
         templates.DefaultTemplate.loadTemplate("frame0.k0", "");
         this.redraw('All', true);
     }
-
+    // 设置当前绘图工具
     setCurrentDrawingTool(paramTool) {
         this._drawingTool = ChartManager.DrawingTool[paramTool];
         this.setRunningMode(this._drawingTool);
@@ -118,7 +118,7 @@ export class ChartManager {
     setLanguage(lang) {
         this._language = lang;
     }
-
+    // 设置主题名称
     setThemeName(frameName, themeName) {
         if (themeName === undefined)
             themeName = "Dark";
@@ -136,7 +136,7 @@ export class ChartManager {
         this.setTheme(frameName, theme);
         this.getFrame(frameName).setChanged(true);
     }
-
+    // 获取图表样式
     getChartStyle(dsName) {
         let chartStyle = this._dsChartStyle[dsName];
         if (chartStyle === undefined)
@@ -190,7 +190,7 @@ export class ChartManager {
         this.getArea(plotter.getAreaName()).setChanged(true);
         this._dsChartStyle[dsName] = style;
     }
-
+    // 设置正常模式
     setNormalMode() {
         this._drawingTool = this._beforeDrawingTool;
         $(".chart_dropdown_data").removeClass("chart_dropdown-hover");
@@ -205,7 +205,7 @@ export class ChartManager {
             this.hideCursor();
         }
     }
-
+    // 运行模式
     setRunningMode(mode) {
         let pds = this.getDataSource("frame0.k0");
         let curr_o = pds.getCurrentToolObject();
@@ -304,7 +304,7 @@ export class ChartManager {
     setTitle(dsName, title) {
         this._titles[dsName] = title;
     }
-
+    // 设置当前数据源
     setCurrentDataSource(dsName, dsAlias) {
         let cached = this.getCachedDataSource(dsAlias);
         if (cached !== undefined && cached !== null) {
@@ -315,18 +315,18 @@ export class ChartManager {
             this.setCachedDataSource(dsAlias, cached);
         }
     }
-
+    // 获取数据源
     getDataSource(name) {
         return this._dataSources[name];
     }
-
+    // 设置数据源
     setDataSource(name, ds, forceRefresh) {
         this._dataSources[name] = ds;
         if (forceRefresh) {
             this.updateData(name, null);
         }
     }
-
+    // 获取缓存数据源
     getCachedDataSource(name) {
         return this._dataSourceCache[name];
     }
@@ -334,7 +334,7 @@ export class ChartManager {
     setCachedDataSource(name, ds) {
         this._dataSourceCache[name] = ds;
     }
-
+    // 获取数据提供者
     getDataProvider(name) {
         return this._dataProviders[name];
     }
@@ -346,7 +346,7 @@ export class ChartManager {
     removeDataProvider(name) {
         delete this._dataProviders[name];
     }
-
+    // 得到框架
     getFrame(name) {
         return this._frames[name];
     }
@@ -358,7 +358,7 @@ export class ChartManager {
     removeFrame(name) {
         delete this._frames[name];
     }
-
+    // 得到区域
     getArea(name) {
         return this._areas[name];
     }
@@ -370,7 +370,7 @@ export class ChartManager {
     removeArea(name) {
         delete this._areas[name];
     }
-
+    // 时间线
     getTimeline(name) {
         return this._timelines[name];
     }
@@ -382,7 +382,7 @@ export class ChartManager {
     removeTimeline(name) {
         delete this._timelines[name];
     }
-
+    // 得到的范围
     getRange(name) {
         return this._ranges[name];
     }
@@ -394,7 +394,7 @@ export class ChartManager {
     removeRange(name) {
         delete this._ranges[name];
     }
-
+    // 得到绘图仪
     getPlotter(name) {
         return this._plotters[name];
     }
@@ -406,7 +406,7 @@ export class ChartManager {
     removePlotter(name) {
         delete this._plotters[name];
     }
-
+    // 得到的主题
     getTheme(name) {
         return this._themes[name];
     }
@@ -414,7 +414,7 @@ export class ChartManager {
     setTheme(name, theme) {
         this._themes[name] = theme;
     }
-
+    // 获取帧鼠标Pos
     getFrameMousePos(name, point) {
         if (this._frameMousePos[name] !== undefined) {
             point.x = this._frameMousePos[name].x;
@@ -428,7 +428,7 @@ export class ChartManager {
     setFrameMousePos(name, px, py) {
         this._frameMousePos[name] = {x: px, y: py};
     }
-
+    // 画出区域
     drawArea(context, area, plotterNames) {
         let areaName = area.getNameObject().getCompAt(2);
         if (areaName === "timeline") {
@@ -449,7 +449,7 @@ export class ChartManager {
                 plotter.Draw(context);
         }
     }
-
+    // 绘制区域
     drawAreaMain(context, area) {
         let ds = this._dataSources[area.getDataSourceName()];
         let plotterNames;
@@ -460,7 +460,7 @@ export class ChartManager {
         this.drawArea(context, area, plotterNames);
         area.setChanged(false);
     }
-
+    // 绘制区域叠加
     drawAreaOverlay(context, area) {
         let ds = this._dataSources[area.getDataSourceName()];
         let plotterNames;
@@ -470,7 +470,7 @@ export class ChartManager {
             plotterNames = [".decoration", ".selection", ".info", ".tool"];
         this.drawArea(context, area, plotterNames);
     }
-
+    // 画出主要
     drawMain(frameName, context) {
         let drawn = false;
 
@@ -497,7 +497,7 @@ export class ChartManager {
                 e.setChanged(false);
         }
     }
-
+    // 画覆盖
     drawOverlay(frameName, context) {
         for (let n in this._areas) {
             let area = this._areas[n];
@@ -514,7 +514,7 @@ export class ChartManager {
                 }
         }
     }
-
+    // 更新数据
     updateData(dsName, data) {
         let ds = this.getDataSource(dsName);
         if (ds === undefined || ds === null) {
@@ -556,7 +556,7 @@ export class ChartManager {
         }
         return true;
     }
-
+    // 更新范围
     updateRange(dsName) {
         let ds = this.getDataSource(dsName);
         if (ds.getDataCount() < 1) {

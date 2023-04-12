@@ -1,7 +1,10 @@
 import React from 'react';
 import './css/main.css';
 import Kline from './js/kline.js';
-
+import { websocket,createWebSocket } from "./js/websock";
+import {requestSuccess} from './js/control'
+// import { createWebSocket, closeWebSocket} from '../kline/js/websock';
+let _this; 
 class ReactKline extends React.Component {
 
     constructor(props) {
@@ -29,6 +32,15 @@ class ReactKline extends React.Component {
         };
         Object.assign(cfg,this.state.props);
         this.state.kline = new Kline(cfg);
+        let url="wss://quote.evotradesys.com:7779/";//服务端连接的url
+        createWebSocket(url)
+        console.log(websocket, 'websocket');
+        let parmas = {
+            type: 3,
+            content: this.state.kline.symbol
+        }
+        setTimeout(() => {websocket.send(JSON.stringify(parmas))},1000)
+        _this = this
         this.state.kline.draw();
     }
     // 设置画布大小
@@ -447,6 +459,34 @@ class ReactKline extends React.Component {
         );
     }
 
+}
+
+// 接收websock返回的数据
+export const websockmessage = (e) => {
+    if (Kline.instance.data?.records) {
+        let historyData = JSON.parse(JSON.stringify(Kline.instance.data))
+        let data = JSON.parse(e.data)
+        console.log(historyData)
+        // 判断返回的数据是否正确
+        if (data instanceof Array) {
+            // historyData.lines[0][4] = parseFloat(data[0][2])
+            let time = historyData.lines[0][0] + 900000
+            let obj = [
+                time, parseFloat(data[0][1]),parseFloat(data[0][2]),parseFloat(data[0][3]),parseFloat(data[0][2]),100
+            ]   
+            // historyData.lines.unshift(obj)
+            // Kline.instance.data = historyData
+            // console.log(e.data)
+            let res = {
+                is_succ: true,
+                data: {
+                    ...historyData
+                }
+            }
+            requestSuccess(res)
+            // _this.state.kline.draw();
+        }
+    }
 }
 
 export default ReactKline;

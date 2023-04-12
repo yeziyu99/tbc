@@ -5,6 +5,9 @@ import {DefaultTemplate, Template} from './templates'
 import {MEvent} from './mevent'
 import $ from 'jquery'
 
+let _this;
+export let requestSuccess;
+
 export class Control {
     // 刷新功能
     static refreshFunction() {
@@ -56,6 +59,7 @@ export class Control {
         }
         Kline.instance.onRequestDataFunc(Kline.instance.requestParam,function(res){
             if(res && res.is_succ){
+                requestSuccess = Control.requestSuccessHandler
                 Control.requestSuccessHandler(res);
             }else{
                 if (Kline.instance.debug) {
@@ -72,12 +76,14 @@ export class Control {
         if (Kline.instance.debug) {
             console.log(res);
         }
+        console.log(res, 'res');
         $("#chart_loading").removeClass("activated");
 
         let chart = ChartManager.instance.getChart();
         chart.setTitle();
         Kline.instance.data = eval(res.data);
-        console.log(res.data);
+        // 没走更新逻辑
+        // console.log(Kline.instance,"Kline");
         let updateDataRes = Kline.instance.chartMgr.updateData("frame0.k0", Kline.instance.data.lines);
         Kline.instance.requestParam = Control.setHttpRequestParam(Kline.instance.symbol, Kline.instance.range, 3000, Kline.instance.chartMgr.getDataSource("frame0.k0").getLastDate());
 
@@ -94,9 +100,10 @@ export class Control {
         //     ChartManager.instance.getChart().updateDepth(Kline.instance.data.depths);
         // }
         Control.clearRefreshCounter();
-
-        Kline.instance.timer = setTimeout(Control.TwoSecondThread, intervalTime);
+        // 不走循环定时间了，改走webSocket
+        // Kline.instance.timer = setTimeout(Control.TwoSecondThread, intervalTime);
         ChartManager.instance.redraw('All', false);
+        _this = this
     }
     // 二秒螺纹
     static TwoSecondThread() {
@@ -170,6 +177,7 @@ export class Control {
     }
 
     static setHttpRequestParam(symbol, range, limit, stop_time) {
+        // console.log(symbol, range, limit, stop_time)
         return {
             symbol : symbol,
             type : parseInt((range % (1000 * 60 * 60)) / (1000 * 60)),
@@ -543,6 +551,27 @@ export class Control {
         ChartSettings.save();
     }
 }
+
+// 接收websock返回的数据
+// export const websockmessage = (e) => {
+//     if (historyData.data) {
+//         if (historyData.data.lines) {
+//             let data = JSON.parse(e.data)
+//         //     // console.log(historyData)
+//         //     // 判断返回的数据是否正确
+//             if (data instanceof Array) {
+//                 console.log(historyData.records, 'historyData.records[0]');
+//                 // historyData.records[0].close = data[0][2]
+//         //         historyData.lines[0][4] = data[0][2]
+//         //         // Kline.instance.data = historyData
+//                 // console.log(data)
+//         //         // _this.state.kline.draw();
+//         //         _this.requestSuccessHandler(historyData)
+//             }
+//         }
+        
+//     }
+// }
 
 Control.refreshCounter = 0;
 Control.refreshHandler = null;

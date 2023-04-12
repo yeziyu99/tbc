@@ -107,6 +107,10 @@ export class Plotter extends NamedObject {
         return true;
     }
 
+    static CLiveOrderPlotter() {
+        
+    }
+
 }
 Plotter.isChrome = (navigator.userAgent.toLowerCase().match(/chrome/) !== null);
 
