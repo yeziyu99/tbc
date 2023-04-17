@@ -3,6 +3,7 @@ import './css/main.css';
 import Kline from './js/kline.js';
 import { websocket,createWebSocket } from "./js/websock";
 import {requestSuccess} from './js/control'
+import { cpk } from "../trading/index";
 // import { createWebSocket, closeWebSocket} from '../kline/js/websock';
 let _this; 
 class ReactKline extends React.Component {
@@ -483,7 +484,7 @@ export const websockmessage = (e) => {
                     ...historyData
                 }
             }
-            requestSuccess(res)
+            cpk.fn(res)
             // _this.state.kline.draw();
         }
     }

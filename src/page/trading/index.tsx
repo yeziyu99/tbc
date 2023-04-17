@@ -29,7 +29,10 @@ const wagmiClient = createClient({
   provider
 })
 const ethereumClient = new EthereumClient(wagmiClient, chains)
-
+interface Cbk{
+  fn?:Function
+}
+export let cpk:Cbk  = {};
 
 function Trading() {
   const [windowSize, setWindowSize] = useState(getWindowSize());
@@ -64,6 +67,7 @@ function Trading() {
     // 判断请求参数（品种和type的变化，如果变化需要重新获取历史记录）
     if (params.symbol !== param.symbol || params.type != param.type) {
       params = {...param}
+      cpk.fn = callback
       getKlinesData()
     }
     
@@ -230,7 +234,6 @@ function Trading() {
     </>
   );
 }
-
 
 
 
