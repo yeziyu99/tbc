@@ -34,13 +34,13 @@ class ReactKline extends React.Component {
         Object.assign(cfg,this.state.props);
         this.state.kline = new Kline(cfg);
         let url="wss://quote.evotradesys.com:7779/";//服务端连接的url
-        createWebSocket(url)
-        console.log(websocket, 'websocket');
-        let parmas = {
-            type: 3,
-            content: this.state.kline.symbol
-        }
-        setTimeout(() => {websocket.send(JSON.stringify(parmas))},1000)
+        // createWebSocket(url)
+        // console.log(websocket, 'websocket');
+        // let parmas = {
+        //     type: 3,
+        //     content: this.state.kline.symbol
+        // }
+        // setTimeout(() => {websocket.send(JSON.stringify(parmas))},1000)
         _this = this
         this.state.kline.draw();
     }

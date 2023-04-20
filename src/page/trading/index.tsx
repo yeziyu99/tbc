@@ -14,8 +14,8 @@ import { arbitrum, mainnet, polygon } from 'wagmi/chains'
 import { Web3Button, Web3NetworkSwitch } from '@web3modal/react'
 // 滑动条测试
 // import { Slider } from 'antd';
-// import { Col, InputNumber, Row, Slider, Space } from 'antd';
-// import type { SliderMarks } from 'antd/es/slider';
+import { Col, InputNumber, Row, Slider, Space } from 'antd';
+import type { SliderMarks } from 'antd/es/slider';
 // 按钮数据
 import { getDataList } from "../../http/index";
 // import { createWebSocket, closeWebSocket} from '../kline/js/websock';
@@ -29,12 +29,31 @@ const wagmiClient = createClient({
   provider
 })
 const ethereumClient = new EthereumClient(wagmiClient, chains)
-interface Cbk{
-  fn?:Function
+interface Cbk {
+  fn?: Function
 }
-export let cpk:Cbk  = {};
+export let cpk: Cbk = {};
 
 function Trading() {
+  const [columnInput, setColumnInput] = useState(50);
+  const setColumnInputChange = (e: any) => {
+    var value = e.target.value.replace(/[^\d]/g, '')
+    setColumnInput(value)
+  }
+  const [inputValue, setInputValue] = useState(2);
+
+  const onChange = (newValue: any) => {
+    setInputValue(newValue);
+  };
+  const marks: SliderMarks = {
+    2: '2',
+    25: '25',
+    50: '50',
+    75: '75',
+    100: '100',
+    125: '125',
+    150: '150',
+  };
   const [windowSize, setWindowSize] = useState(getWindowSize());
   let klinesData = {}
   let params = {
@@ -43,7 +62,7 @@ function Trading() {
     limit: 600,
     stop_time: 1680511864020
   }
-  
+
   useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());
@@ -52,7 +71,7 @@ function Trading() {
     //   return getKlinesData()
     // })
     getKlinesData()
-    
+
     window.addEventListener('resize', handleWindowResize);
 
     return () => {
@@ -61,23 +80,23 @@ function Trading() {
   }, []);
 
 
-  function onRequestData(param:any,callback:any) {
+  function onRequestData(param: any, callback: any) {
     console.log(param, 'param');
-    
+
     // 判断请求参数（品种和type的变化，如果变化需要重新获取历史记录）
     if (params.symbol !== param.symbol || params.type != param.type) {
-      params = {...param}
+      params = { ...param }
       cpk.fn = callback
       getKlinesData()
     }
-    
+
     // setParams(param)
     callback(klinesData)
   }
 
   function getWindowSize() {
-    const {innerWidth, innerHeight} = window;
-    return {innerWidth: innerWidth - 300, innerHeight: innerHeight - 260};
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth: innerWidth - 300, innerHeight: innerHeight - 260 };
   }
   async function getKlinesData() {
     let obj: any = {}
@@ -85,10 +104,10 @@ function Trading() {
     if (res) {
       console.log(res);
       let arr: any = []
-      res.data.data.records.map( (item: any) => {
+      res.data.data.records.map((item: any) => {
         let line: any = []
         for (const key in item) {
-          if(key === 'time') {
+          if (key === 'time') {
             item[key] = item[key] * 1000
           } else {
             item[key] = Number(item[key])
@@ -98,14 +117,15 @@ function Trading() {
         arr.push(line)
       })
       res.data.data.lines = arr.reverse()
-      obj = res.data  
+      obj = res.data
       klinesData = obj
 
     }
   }
   return (
     <>
-      <ReactKline
+      <WagmiConfig client={wagmiClient}>
+        {/* <ReactKline
         width={windowSize.innerWidth}
         height={windowSize.innerHeight}
         ranges={["1w", "1d", "1h", "30m", "15m", "5m", "1m", "line"]}
@@ -115,8 +135,7 @@ function Trading() {
         depthWidth={100}
         debug={false}
         onRequestData={onRequestData}
-      />
-      <WagmiConfig client={wagmiClient}>
+      /> */}
         {/* <iframe src="https://www.tradingview.com/chart/uDMO4E63/?symbol=CME_MINI%3AES1%21" ></iframe>
         <iframe src="https://gains.trade/trading#BTC-USD" ></iframe> */}
         <div className={classNames('Tasding')}>
@@ -125,6 +144,17 @@ function Trading() {
             {/* 上边  */}
             <div className={classNames('Tasding_king_img')}>
               <ReactKline
+                width={windowSize.innerWidth}
+                height={windowSize.innerHeight}
+                ranges={["1w", "1d", "1h", "30m", "15m", "5m", "1m", "line"]}
+                symbol={"AUDJPY"}
+                symbolName={"AUDJPY/USD"}
+                intervalTime={10000}
+                depthWidth={100}
+                debug={false}
+                onRequestData={onRequestData}
+              />
+              {/* <ReactKline
                 width={600}
                 height={400}
                 ranges={["1w", "1d", "1h", "30m", "15m", "5m", "1m", "line"]}
@@ -134,7 +164,7 @@ function Trading() {
                 depthWidth={100}
                 debug={false}
                 onRequestData={onRequestData}
-              />
+              /> */}
 
             </div>
             {/* 下边 */}
@@ -166,7 +196,7 @@ function Trading() {
                 </div>
                 <div className={classNames('Tasding_data_content_row2_btn')}>
                   {/* maxlength="6" autocomplete="off" */}
-                  {/* <input type="text" pattern="^([0-9]+(?:[.,][0-9]*)?)$" value={columnInput} onChange={(e) => setColumnInputChange(e)} /> */}
+                  <input type="text" pattern="^([0-9]+(?:[.,][0-9]*)?)$" value={columnInput} onChange={(e) => setColumnInputChange(e)} />
                   <span>
                     <img src={Dai} alt="" />
                   </span>
@@ -178,10 +208,10 @@ function Trading() {
                     Leverage
                     <span>(2x- 150x)</span>
                   </p>
-                  {/* <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} /> */}
+                  <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} />
                 </div>
                 <div className='Tasding_data_content_row3_bottom'>
-                  {/* <Slider marks={marks} min={2} max={150} onChange={onChange} value={typeof inputValue === 'number' ? inputValue : 0} /> */}
+                  <Slider marks={marks} min={2} max={150} onChange={onChange} value={typeof inputValue === 'number' ? inputValue : 0} />
                 </div>
               </div>
               <div className={classNames('Tasding_data_content_row4')}>
@@ -200,7 +230,7 @@ function Trading() {
                       (%)
                     </span>
                   </p>
-                  {/* <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} /> */}
+                  <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} />
                 </div>
               </div>
               <div className={classNames('Tasding_data_content_row5')}>
@@ -237,4 +267,4 @@ function Trading() {
 
 
 
-  export default Trading;
+export default Trading;
