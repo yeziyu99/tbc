@@ -21,6 +21,11 @@ const Router=[
     component:Vault,
     children:[]
   },
+  {
+    path: '/404',
+    element:<Trading />,
+    component:Trading,
+}
 ]
  export default Router
 

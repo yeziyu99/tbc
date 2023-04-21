@@ -8,8 +8,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { useNavigate, useLocation, useRouteMatch, useParams, } from 'react-router-dom'
 function Vault() {
     console.log(useNavigate(),'pppp')
+    const navigate=useNavigate()
     useEffect(() => {
-
+        
     }, [])
     const [btnTag, setBtnTag] = useState('deposit');
     const [title, setTitle] = useState(false);
@@ -36,7 +37,9 @@ function Vault() {
                 <div className="vault_container_con">
                     <div className="vault_container_con_left">
                         <div className="vault_container_con_left_title">
-                            <h1 className="vault_container_con_left_titles">
+                            <h1 className="vault_container_con_left_titles" onClick={()=>{
+                                navigate('/')
+                            }}>
                                 <span>gDAI</span>
                                 Vault
                             </h1>

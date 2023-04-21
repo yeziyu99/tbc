@@ -26,7 +26,6 @@ function Header(props) {
         
     }, [])
     let history=useNavigate()
-    console.log(history)
     // const { id } = useParams();
     // className: this.$route.name,
     // active:false
