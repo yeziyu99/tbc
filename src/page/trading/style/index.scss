@@ -1,0 +1,376 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.Tasding {
+    display: flex;
+
+    .Tasding_king {
+        flex: 1;
+
+        .Tasding_king_img {}
+
+        .Tasding_king_bottom {}
+    }
+
+    .Tasding_data {
+        width: 480px;
+        background: var(--panel-bg);
+        border: 1px solid var(--panel-border);
+        color: var(--text);
+        overflow: auto;
+        position: relative;
+        z-index: 0;
+
+        .Tasding_data_title {
+            margin: 0;
+            padding: 0;
+            height: 40px;
+
+            li {
+                background: var(--panel-header);
+                text-transform: uppercase;
+                font-size: 13px;
+                display: inline-block;
+                flex-basis: 50%;
+                width: 50%;
+                text-align: center;
+                font-weight: 600;
+                color: #fff;
+                text-align: center;
+                height: 40px !important;
+                background-color: var(--highlight-light);
+                line-height: 40px !important;
+                font-size: 13px;
+                letter-spacing: -.03em !important;
+                color: var(--text-light);
+            }
+
+            li.active {
+                color: var(--text);
+                border-bottom: 2px solid var(--positive);
+            }
+        }
+
+        .Tasding_data_content {
+            margin: 8px 0 20px;
+            padding: 15px 20px;
+
+            .Tasding_data_content_row {
+                display: flex;
+                background-color: var(--secondary-element-bg);
+                border-radius: 4px;
+
+                li {
+                    position: relative;
+                    flex: 1 1;
+                    height: 36px;
+                    border-radius: 0;
+                    background-color: transparent;
+                    color: var(--secondary-element-text);
+                    font-size: 16px;
+                    font-weight: 700;
+                    letter-spacing: -.03em !important;
+                    transition: none 0s ease 0s;
+                    transition: initial;
+                    line-height: 36px;
+                    text-align: center;
+                    cursor: pointer;
+                }
+
+                li:first-of-type {
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+
+                }
+
+                li:last-of-type {
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                }
+
+                li.active {
+                    background-color: var(--secondary-element-bg-active);
+                    color: var(--secondary-element-text-active);
+                    border-radius: 4px;
+                }
+            }
+
+            .Tasding_data_content_row2 {
+                background-color: var(--input-bg);
+                border: 1px solid var(--input-border);
+                border-radius: 5px;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+
+                .Tasding_data_content_row2_top {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    display: flex;
+                    align-items: center;
+                    padding: 8px 12px;
+                    width: 100%;
+
+                    >label {
+                        color: var(--text-description);
+                        font-size: 16px;
+                        font-weight: 400;
+                        pointer-events: none;
+                        margin-bottom: 0;
+                        letter-spacing: -.03em !important;
+                        white-space: nowrap;
+
+                        >span {
+                            font-size: 13px;
+                            color: var(--text-light);
+                            font-weight: 600;
+                            letter-spacing: -.03em !important;
+                        }
+                    }
+                }
+
+                .Tasding_data_content_row2_btn {
+                    position: relative;
+                    display: flex;
+                    align-items: flex-end;
+
+                    >input {
+                        flex: 1 1 !important;
+                        max-width: unset !important;
+                        height: auto !important;
+                        width: 100% !important;
+                        font-size: 24px !important;
+                        text-align: left !important;
+                        font-weight: 700 !important;
+                        padding: 32px 64px 4px 12px !important;
+                        background-color: transparent !important;
+                        border: none !important;
+                        color: var(--text) !important;
+                        overflow: visible;
+                    }
+
+                    >span {
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                        font-weight: 700;
+                        padding: 8px 12px;
+                        pointer-events: none;
+
+                        >img {
+                            width: 20px;
+                            height: 20px;
+                            position: relative;
+                            // display: flex;
+                            // justify-content: center;
+                            // align-items: center;
+                            margin: 0 2px;
+                            border-radius: 50%;
+                            vertical-align: text-top;
+                            object-fit: cover;
+
+                        }
+                    }
+                }
+            }
+
+            .Tasding_data_content_row3 {
+                padding: 20px 0;
+                padding-bottom: 40px;
+
+                .Tasding_data_content_row3_top {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 4px;
+
+                    p {
+                        font-size: 16px;
+                        letter-spacing: -.03em !important;
+                        margin: 0;
+                        line-height: 17px;
+                        color: var(--text-description);
+
+                        span {
+                            font-size: 13px;
+                            color: var(--text-light);
+                            font-weight: 600;
+                            letter-spacing: -.03em !important;
+                        }
+                    }
+
+                    ;
+
+                    input {
+                        max-width: 100px;
+                        height: 32px;
+                        border-radius: 4px;
+                        font-size: 18px;
+                        letter-spacing: -.03em;
+                        text-align: center;
+                        padding: 10px;
+                        font-weight: 400;
+                        background-color: var(--input-bg);
+                        border: 1px solid var(--input-border);
+                        color: var(--text-strong);
+                        // border: 0;
+                        line-height: inherit;
+                        margin: 0;
+                        -moz-appearance: textfield;
+                    }
+
+                    input:focus {
+                        background-color: var(--input-bg-active);
+                        border-color: var(--input-border-active);
+                        outline: none !important;
+                    }
+
+                    input {
+                        -moz-appearance: textfield;
+                    }
+
+                    .ant-input-number-handler-wrap {
+                        display: none !important;
+                    }
+
+                    .ant-input-number-focused {
+                        border-color: var(--input-border);
+                        box-shadow: 0 0 0 2px var(--input-border);
+                        border-inline-end-width: 1px;
+                        outline: 0;
+                    }
+
+                    .ant-input-number:hover {
+                        border-color: var(--input-border);
+                    }
+
+                    .ant-input-number {
+                        border: 1px solid var(--input-border);
+                    }
+                }
+
+                .Tasding_data_content_row3_bottom {
+
+                    // :global(.ant-slider-track){
+                    //     background: linear-gradient(270deg,#3deca7 10%,#10a4cc 100%);;
+                    // }
+                    // :global {
+                    .ant-slider-track {
+                        background: linear-gradient(270deg, #3deca7 10%, #10a4cc 100%);
+                        ;
+                    }
+
+                    .ant-slider-mark {
+                        span {
+                            color: #fff !important;
+                        }
+                    }
+
+                    // .ant-slider-dot{
+                    //     background: #35394b!important;
+                    // }
+                    // }
+                }
+            }
+
+            .Tasding_data_content_row4 {
+                display: flex;
+
+                .Tasding_data_content_row4_left {
+                    padding-right: 10px;
+                    flex: 1 1;
+
+                    .Tasding_data_content_row4_left_1 {
+                        margin-bottom: 5px;
+                        color: var(--text-description);
+                    }
+
+                    .Tasding_data_content_row4_left_2 {
+                        max-width: 100px;
+                        height: 32px;
+                        border-radius: 4px;
+                        font-size: 18px;
+                        letter-spacing: -.03em;
+                        text-align: center;
+                        padding: 10px;
+                        font-weight: 400;
+                        background-color: var(--input-bg);
+                        border: 1px solid var(--input-border);
+                        color: var(--text-strong);
+                    }
+                }
+
+                .Tasding_data_content_row4_right {
+                    p {
+                        margin-bottom: 5px;
+                        color: var(--text-description);
+
+                        span: {
+                            font-size: 13px;
+                            color: var(--text-light);
+                            font-weight: 600;
+                            letter-spacing: -.03em !important;
+                        }
+                    }
+
+                    input {
+                        max-width: 100px;
+                        height: 32px;
+                        border-radius: 4px;
+                        font-size: 18px;
+                        letter-spacing: -.03em;
+                        text-align: center;
+                        padding: 10px;
+                        font-weight: 400;
+                        background-color: var(--input-bg);
+                        border: 1px solid var(--input-border);
+                        color: var(--text-strong);
+                        // border: 0;
+                        line-height: inherit;
+                        margin: 0;
+                        -moz-appearance: textfield;
+                    }
+
+                    input:focus {
+                        background-color: var(--input-bg-active);
+                        border-color: var(--input-border-active);
+                        outline: none !important;
+                    }
+
+                    input {
+                        -moz-appearance: textfield;
+                    }
+
+                    .ant-input-number-handler-wrap {
+                        display: none !important;
+                    }
+
+                    .ant-input-number-focused {
+                        border-color: var(--input-border);
+                        box-shadow: 0 0 0 2px var(--input-border);
+                        border-inline-end-width: 1px;
+                        outline: 0;
+                    }
+
+                    .ant-input-number:hover {
+                        border-color: var(--input-border);
+                    }
+
+                    .ant-input-number {
+                        border: 1px solid var(--input-border);
+                    }
+                }
+            }
+            .Tasding_data_content_row5{
+                
+            }
+            .Tasding_data_content_row5,.Tasding_data_content_row6{
+                margin: 20px 0;
+
+            }
+        }
+    }
+}

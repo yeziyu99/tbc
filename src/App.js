@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 import Layout from "./layout/layout.jsx";
+// import 'antd/dist/reset.css';
 import "./App.css";
 // import Login from './page/login/login'
 import { Route, BrowserRouter, renderRoutes, Routes,Navigate } from "react-router-dom";
