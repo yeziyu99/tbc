@@ -11,10 +11,10 @@ import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/react'
 import { configureChains, createClient, WagmiConfig } from 'wagmi'
 import { arbitrum, mainnet, polygon } from 'wagmi/chains'
-import { Web3Button, Web3NetworkSwitch } from '@web3modal/react'
+import { Web3Button, Web3NetworkSwitch,useWeb3ModalTheme } from '@web3modal/react'
 // 滑动条测试
 // import { Slider } from 'antd';
-import { Col, InputNumber, Row, Slider, Space } from 'antd';
+import { Col, InputNumber, Row, Slider, Space, Input } from 'antd';
 import type { SliderMarks } from 'antd/es/slider';
 // 按钮数据
 import { getDataList } from "../../http/index";
@@ -32,8 +32,8 @@ const ethereumClient = new EthereumClient(wagmiClient, chains)
 interface Cbk {
   fn?: Function
 }
+// console.log(useWeb3ModalTheme(),'useWeb3ModalTheme()')
 export let cpk: Cbk = {};
-
 function Trading() {
   const [columnInput, setColumnInput] = useState(50);
   const setColumnInputChange = (e: any) => {
@@ -41,10 +41,19 @@ function Trading() {
     setColumnInput(value)
   }
   const [inputValue, setInputValue] = useState(2);
-
+  const [stopVal, setStopVal] = useState('')
+  const [title, setTitle] = useState(true);
+  const [title2, setTitle2] = useState(true);
+  const [title3, setTitle3] = useState(true);
+  const [title4, setTitle4] = useState(true);
+  const [title5, setTitle5] = useState(true);
   const onChange = (newValue: any) => {
     setInputValue(newValue);
   };
+  const stopChange = (e: any) => {
+    var value = e.target.value.replace(/[^\d]/g, '')
+    setStopVal(value)
+  }
   const marks: SliderMarks = {
     2: '2',
     25: '25',
@@ -237,20 +246,91 @@ function Trading() {
                 <div className={classNames('Tasding_data_content_row5_top')}>
                   <p >
                     Stop loss
-                    <span>
+                    <span className='tc-danger'>
                       (None)
                     </span>
                   </p>
-                  <p className={classNames('Tasding_data_content_row6_bun')}>
-
+                  <p className={classNames(' tc-danger')}>
+                    None
                   </p>
+                </div>
+                <div className={classNames('Tasding_data_content_row5_bottom')}>
+                  <div className='active'>NONE</div>
+                  <div>-10%</div>
+                  <div>-25%</div>
+                  <div>-50%</div>
+                  <div>-75%</div>
+                  <input type="text" placeholder="PRICE" pattern="^([0-9]+(?:[.,][0-9]*)?)$" value={stopVal} onChange={(e) => stopChange(e)} />
                 </div>
               </div>
               <div className={classNames('Tasding_data_content_row6_bun')}>
-
+                <div className='Tasding_data_content_row6_top'>
+                  <p >
+                    Take profit
+                    <span className='tc-success'>
+                      (5.69937)
+                    </span>
+                  </p>
+                  <p className={classNames(' tc-success')}>
+                    +450.0 DAI
+                  </p>
+                </div>
+                <div className={classNames('Tasding_data_content_row6_bottom')}>
+                  <div className='active'>25%</div>
+                  <div>50%</div>
+                  <div>100%</div>
+                  <div>300%</div>
+                  <div>900%</div>
+                  <input type="text" placeholder="PRICE" pattern="^([0-9]+(?:[.,][0-9]*)?)$" value={stopVal} onChange={(e) => stopChange(e)} />
+                </div>
               </div>
               <div className={classNames('Tasding_data_content_row7')}>
                 <Web3Button />
+              </div>
+              <div style={{ marginTop: 20, marginBottom: 8 }} className='Tasding_data_content_row8 TradingPanel_orderStatus__ZRa1_'>
+                <span>EOS/USD</span>
+                <span className='tc-danger'>Wallet not connected</span>
+              </div>
+              <div style={{ marginBottom: 8 }} className='Tasding_data_content_row8 '>
+                <span className='Tooltip_tooltipCursor' onMouseOut={()=>{setTitle(true)}} onMouseOver ={() => { setTitle(false) }}>Est. Execution Price
+                  <div className={classNames({ 'displayNone': title })}>
+                    The estimated price including spread at which your trade will execute.
+                  </div>
+                </span>
+                <span className='tc-danger'>1.0565</span>
+              </div>
+              <div style={{ marginBottom: 8 }} className='Tasding_data_content_row8 '>
+                <span onMouseOut={()=>{setTitle2(true)}} onMouseOver ={() => { setTitle2(false) }}>Spread
+                  <div className={classNames({ 'displayNone': title2 })}>
+                    Current market spread
+                  </div>
+                </span>
+                <span className='tc-danger'>0.00%</span>
+              </div>
+              <div style={{ marginBottom: 8 }} className='Tasding_data_content_row8 '>
+                <span onMouseOut={()=>{setTitle3(true)}} onMouseOver ={() => { setTitle3(false) }}>Position Size
+                  <div className={classNames({ 'displayNone': title3 })}>
+                    Collateral * Leverage
+                  </div>
+                </span>
+                <span className='tc-danger'>100 DAI</span>
+              </div>
+              <div style={{ marginBottom: 8 }} className='Tasding_data_content_row8 '>
+                <span onMouseOut={()=>{setTitle4(true)}} onMouseOver ={() => { setTitle4(false) }}>Fees
+                  <div className={classNames({ 'displayNone': title4 })}>
+                    Learn more
+                  </div>
+                </span>
+                <span className='tc-danger'>0.1 DAI</span>
+              </div>
+              <div style={{ marginBottom: 8 }} className='Tasding_data_content_row8 '>
+                <span onMouseOut={()=>{setTitle5(true)}} onMouseOver ={() => { setTitle5(false) }}>Liq. Price
+                <div className={classNames({ 'displayNone': title5 })}>
+                If this price is reached, your position will be
+closed and your collateral lost.
+                  </div>
+                </span>
+                <span className='tc-danger'>0.581075</span>
               </div>
             </div>
 
