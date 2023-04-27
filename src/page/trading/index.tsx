@@ -120,7 +120,8 @@ function Trading() {
 
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
-    return { innerWidth: innerWidth - 300, innerHeight: innerHeight - 260 };
+    console.log(innerWidth,innerHeight)
+    return { innerWidth: innerWidth - 480, innerHeight: innerHeight - 290 };
   }
   async function getKlinesData() {
     let obj: any = {}
@@ -221,17 +222,6 @@ function Trading() {
   return (
     <>
       <WagmiConfig client={wagmiClient}>
-        {/* <ReactKline
-        width={windowSize.innerWidth}
-        height={windowSize.innerHeight}
-        ranges={["1w", "1d", "1h", "30m", "15m", "5m", "1m", "line"]}
-        symbol={"AUDJPY"}
-        symbolName={"AUDJPY/USD"}
-        intervalTime={10000}
-        depthWidth={100}
-        debug={false}
-        onRequestData={onRequestData}
-      /> */}
         {/* <iframe src="https://www.tradingview.com/chart/uDMO4E63/?symbol=CME_MINI%3AES1%21" ></iframe>
         <iframe src="https://gains.trade/trading#BTC-USD" ></iframe> */}
         <div className={classNames('Tasding')}>
