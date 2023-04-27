@@ -77,7 +77,17 @@ function Trading() {
       label: '1st menu item',
     },
   ]
+  const { theme, setTheme } = useWeb3ModalTheme()
   useEffect(() => {
+  // theme;
+  setTheme({
+    themeMode: 'dark',
+    themeVariables: {
+      '--w3m-font-family': 'Roboto, sans-serif',
+      '--w3m-accent-color': 'rgb(121,76,255)',
+      '--w3m-background-color':'rgb(121,76,255)'
+    }
+  })
     function handleWindowResize() {
       setWindowSize(getWindowSize());
     }

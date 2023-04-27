@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // 导入所需组件
 import Vault from '../page/vault'
 import Trading from '../page/trading'
+import Text from '../page/text'
 import Layout from '../layout/layout'
 // 导入路由依赖
 import { Route,BrowserRouter } from 'react-router-dom'
@@ -12,13 +13,20 @@ const Router=[
     name:'Trading',
     element:<Trading />,
     component:Trading,
-    meta:{title:'222222222' }
+    meta:{title:'Trading' }
   },
   {
     path:'/Vault',
     name:'Vault',
     element:<Vault />,
     component:Vault,
+    children:[]
+  },
+  {
+    path:'/Text',
+    name:'Text',
+    element:<Text />,
+    component:Text,
     children:[]
   },
   {

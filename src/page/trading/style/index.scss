@@ -5,7 +5,8 @@
 
 .Tasding {
   display: flex;
-
+  min-height: calc(100vh - 64px - 28px + 1px);
+  // max-height: max(622px,100vh - 64px - 28px + 1px);
   .Tasding_king {
     flex: 1;
 
