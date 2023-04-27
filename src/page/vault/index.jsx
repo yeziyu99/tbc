@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import { useNavigate, useLocation, useRouteMatch, useParams, } from 'react-router-dom'
 function Vault() {
     // console.log(,'pppp')
-    useNavigate('/')
+    // useNavigate('/')
     useEffect(() => {
         
     }, [])
@@ -38,7 +38,7 @@ function Vault() {
                     <div className="vault_container_con_left">
                         <div className="vault_container_con_left_title">
                             <h1 className="vault_container_con_left_titles" onClick={()=>{
-                                navigate('/')
+                                // navigate('/')
                             }}>
                                 <span>gDAI</span>
                                 Vault

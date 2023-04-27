@@ -6,15 +6,15 @@ import ReactKline from '../kline';
 // 图片引入
 import Dai from '../../assets/images/icons/dai.svg';
 // import Gdai from '../../assets/images/icons/gdai.png' 
-
+import { DownOutlined, SmileOutlined } from '@ant-design/icons';
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/react'
 import { configureChains, createClient, WagmiConfig } from 'wagmi'
 import { arbitrum, mainnet, polygon } from 'wagmi/chains'
-import { Web3Button, Web3NetworkSwitch,useWeb3ModalTheme } from '@web3modal/react'
+import { Web3Button, Web3NetworkSwitch, useWeb3ModalTheme } from '@web3modal/react'
 // 滑动条测试
 // import { Slider } from 'antd';
-import { Col, InputNumber, Row, Slider, Space, Input } from 'antd';
+import { Col, InputNumber, Row, Slider, Space, Input, Dropdown } from 'antd';
 import type { SliderMarks } from 'antd/es/slider';
 // 按钮数据
 import { getDataList } from "../../http/index";
@@ -71,7 +71,12 @@ function Trading() {
     limit: 600,
     stop_time: 1680511864020
   }
-
+  const items: any = [
+    {
+      key: '1',
+      label: '1st menu item',
+    },
+  ]
   useEffect(() => {
     function handleWindowResize() {
       setWindowSize(getWindowSize());
@@ -152,6 +157,92 @@ function Trading() {
           <div className={classNames('Tasding_king')}>
             {/* 上边  */}
             <div className={classNames('Tasding_king_img')}>
+              <div className='PairSelectionContainer_container__4JaAm'>
+                <div className='FavoritePairsContainer_container__ZU_H7'>
+                  <div className='FavoritePairsContainer_starContainer__G_6_g'>
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" className="svg-inline--fa fa-star FavoritePairsContainer_star__0Oxoz" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                      <path fill="currentColor" d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
+                    </svg>
+                  </div>
+                  <div className='FavoritePairsContainer_tabsContainer__jTasa'>
+                    <div style={{ filter: 'none', zIndex: 0, transition: 'transform 0ms linear 0s' }}>
+                      <div className='PairTab_container__OQlsp'>
+                        <div className='PairTab_pairName__84JHV'>BTC/USD</div>
+                        <div className='PairTab_price__mySbF'>29855.4</div>
+                      </div>
+                    </div>
+                    <div style={{ filter: 'none', zIndex: 0, transition: 'transform 0ms linear 0s' }}>
+                      <div className='PairTab_container__OQlsp'>
+                        <div className='PairTab_pairName__84JHV'>EUR/USD</div>
+                        <div className='PairTab_price__mySbF'>29855.4</div>
+                      </div>
+                    </div>
+                    <div style={{ filter: 'none', zIndex: 0, transition: 'transform 0ms linear 0s' }}>
+                      <div className='PairTab_container__OQlsp'>
+                        <div className='PairTab_pairName__84JHV'>AAPL/USD</div>
+                        <div className='PairTab_price__mySbF PairTab_positive_K4m_H'>29855.4</div>
+                      </div>
+                    </div>
+                    <div style={{ filter: 'none', zIndex: 0, transition: 'transform 0ms linear 0s' }}>
+                      <div className='PairTab_container__OQlsp'>
+                        <div className='PairTab_pairName__84JHV'>SPY/USD</div>
+                        <div className='PairTab_price__mySbF'>29855.4</div>
+                      </div>
+                    </div>
+                    <div style={{ filter: 'none', zIndex: 0, transition: 'transform 0ms linear 0s' }}>
+                      <div className='PairTab_container__OQlsp'>
+                        <div className='PairTab_pairName__84JHV'>XAU/USD</div>
+                        <div className='PairTab_price__mySbF PairTab_positive_K4m_H'>29855.4</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className='CurrentPairInfo_container__JHYj6'>
+                  <div className='CurrentPairInfo_mainRow__KICmC'>
+                    <Dropdown menu={{ items }}>
+                      <a className='PairDropdownToggle_name__G5rOV' onClick={(e) => e.preventDefault()}>
+                        <Space>
+                          EOS/USD
+                          <DownOutlined />
+                        </Space>
+                      </a>
+                    </Dropdown>
+                  </div>
+                  <div className='CurrentPrice_price__VV3lg'>
+                    <h4>1.08405</h4>
+                    <span className='CurrentPrice_negative__SbdRv CurrentPrice_positive__18E8h'>+4.48%</span>
+                  </div>
+                  <div className='CurrentPairStats_container__z9UTi'>
+                    <div className='CurrentPairStats_infoRow__jjQqC indiana-scroll-container indiana-scroll-container--hide-scrollbars'>
+                      <div className='Tooltip_tooltipCursor CurrentPairStats_pairField__NcAn6'>
+                        <h5>Open Interest (l)</h5>
+                        <span>0 / 1M</span>
+                      </div>
+                      <div className='Tooltip_tooltipCursor CurrentPairStats_pairField__NcAn6'>
+                        <h5>Open Interest (s)</h5>
+                        <span>0 / 1M</span>
+                      </div>
+                      <div className='Tooltip_tooltipCursor CurrentPairStats_pairField__NcAn6'>
+                        <h5>Funding(l)</h5>
+                        <span>0%</span>
+                      </div>
+                      <div className='Tooltip_tooltipCursor CurrentPairStats_pairField__NcAn6'>
+                        <h5>Funding(s)</h5>
+                        <span>0%</span>
+                      </div>
+                      <div className='Tooltip_tooltipCursor CurrentPairStats_pairField__NcAn6'>
+                        <h5>Rollover</h5>
+                        <span>0.0299%</span>
+                      </div>
+                    </div>
+                    <div className='ModeDropdownToggle_toggleButton__xI1ff'>
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="grid-2" className="svg-inline--fa fa-grid-2 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                      <path fill="currentColor" d="M80 64c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H80zM32 80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H80c-26.5 0-48-21.5-48-48V80zM80 320c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H80zM32 336c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H80c-26.5 0-48-21.5-48-48V336zM432 64H336c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16zM336 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H336c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48zm0 288c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H336zm-48 16c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H336c-26.5 0-48-21.5-48-48V336z"></path>
+                    </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <ReactKline
                 width={windowSize.innerWidth}
                 height={windowSize.innerHeight}
@@ -292,7 +383,7 @@ function Trading() {
                 <span className='tc-danger'>Wallet not connected</span>
               </div>
               <div style={{ marginBottom: 8 }} className='Tasding_data_content_row8 '>
-                <span className='Tooltip_tooltipCursor' onMouseOut={()=>{setTitle(true)}} onMouseOver ={() => { setTitle(false) }}>Est. Execution Price
+                <span className='Tooltip_tooltipCursor' onMouseOut={() => { setTitle(true) }} onMouseOver={() => { setTitle(false) }}>Est. Execution Price
                   <div className={classNames({ 'displayNone': title })}>
                     The estimated price including spread at which your trade will execute.
                   </div>
@@ -300,7 +391,7 @@ function Trading() {
                 <span className='tc-danger'>1.0565</span>
               </div>
               <div style={{ marginBottom: 8 }} className='Tasding_data_content_row8 '>
-                <span onMouseOut={()=>{setTitle2(true)}} onMouseOver ={() => { setTitle2(false) }}>Spread
+                <span className='Tooltip_tooltipCursor' onMouseOut={() => { setTitle2(true) }} onMouseOver={() => { setTitle2(false) }}>Spread
                   <div className={classNames({ 'displayNone': title2 })}>
                     Current market spread
                   </div>
@@ -308,7 +399,7 @@ function Trading() {
                 <span className='tc-danger'>0.00%</span>
               </div>
               <div style={{ marginBottom: 8 }} className='Tasding_data_content_row8 '>
-                <span onMouseOut={()=>{setTitle3(true)}} onMouseOver ={() => { setTitle3(false) }}>Position Size
+                <span className='Tooltip_tooltipCursor' onMouseOut={() => { setTitle3(true) }} onMouseOver={() => { setTitle3(false) }}>Position Size
                   <div className={classNames({ 'displayNone': title3 })}>
                     Collateral * Leverage
                   </div>
@@ -316,7 +407,7 @@ function Trading() {
                 <span className='tc-danger'>100 DAI</span>
               </div>
               <div style={{ marginBottom: 8 }} className='Tasding_data_content_row8 '>
-                <span onMouseOut={()=>{setTitle4(true)}} onMouseOver ={() => { setTitle4(false) }}>Fees
+                <span className='Tooltip_tooltipCursor' onMouseOut={() => { setTitle4(true) }} onMouseOver={() => { setTitle4(false) }}>Fees
                   <div className={classNames({ 'displayNone': title4 })}>
                     Learn more
                   </div>
@@ -324,10 +415,10 @@ function Trading() {
                 <span className='tc-danger'>0.1 DAI</span>
               </div>
               <div style={{ marginBottom: 8 }} className='Tasding_data_content_row8 '>
-                <span onMouseOut={()=>{setTitle5(true)}} onMouseOver ={() => { setTitle5(false) }}>Liq. Price
-                <div className={classNames({ 'displayNone': title5 })}>
-                If this price is reached, your position will be
-closed and your collateral lost.
+                <span className='Tooltip_tooltipCursor' onMouseOut={() => { setTitle5(true) }} onMouseOver={() => { setTitle5(false) }}>Liq. Price
+                  <div className={classNames({ 'displayNone': title5 })}>
+                    If this price is reached, your position will be
+                    closed and your collateral lost.
                   </div>
                 </span>
                 <span className='tc-danger'>0.581075</span>
