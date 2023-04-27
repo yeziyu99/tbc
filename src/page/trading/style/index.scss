@@ -250,15 +250,16 @@
             text-align: left;
             gap: 10px;
             transition: border-color 0.1s;
-            svg:not(:host).svg-inline--fa, svg:not(:root).svg-inline--fa{
-                overflow: visible;
-                box-sizing: content-box;
+            svg:not(:host).svg-inline--fa,
+            svg:not(:root).svg-inline--fa {
+              overflow: visible;
+              box-sizing: content-box;
             }
-            .svg-inline--fa{
-                display: var(--fa-display,inline-block);
-                height: 1em;
-                overflow: visible;
-                vertical-align: -0.125em;
+            .svg-inline--fa {
+              display: var(--fa-display, inline-block);
+              height: 1em;
+              overflow: visible;
+              vertical-align: -0.125em;
             }
           }
         }
@@ -266,6 +267,69 @@
     }
 
     .Tasding_king_bottom {
+      grid-area: active-trades;
+      min-height: 200px;
+      overflow: hidden;
+      // box-shadow: 0 0 0 1px var(--panel-border);
+      border-width: 0;
+      // margin-top: 1px;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+      color: var(--text);
+      box-shadow: unset;
+      border-bottom-width: 1px;
+      margin-top: 0;
+      .Tasding_king_bottom_row {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        .Tasding_king_bottom_row_head {
+          height: 45px;
+          width: 100%;
+          align-items: center;
+          display: flex;
+          flex-shrink: 0;
+          .row_head_title {
+            height: 45px;
+            margin: 0 16px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 700;
+            position: relative;
+            display: flex;
+            div {
+              height: 45px;
+              padding: 0 12px;
+              border: 1px solid transparent;
+              border-radius: 5px 5px 0 0;
+              -webkit-transform: translateY(-1px);
+              transform: translateY(-1px);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: var(--text-superlight);
+              p{
+                padding: 0;
+                margin: 0;
+              }
+            }
+            .trades-active-title {
+              position: relative;
+              background: var(--panel-bg);
+              color: #fff;
+            }
+            .first-title {
+              border-left-width: 0 !important;
+              .ta-c {
+                text-align: center;
+
+            }
+            }
+          }
+        }
+      }
     }
   }
 

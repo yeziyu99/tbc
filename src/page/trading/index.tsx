@@ -269,7 +269,22 @@ function Trading() {
             </div>
             {/* 下边 */}
             <div className={classNames('Tasding_king_bottom')}>
-              下边
+              <div className='Tasding_king_bottom_row'>
+                <div className='Tasding_king_bottom_row_head'>
+                  <div className='row_head_title'>
+                    <div className='trades-active-title frist_title'>
+                      <p className='ta-c toberemoved'>
+                      Trades (0)
+                      </p>
+                    </div>
+                    <div className='frist_title'>
+                      <p className='ta-c toberemoved'>
+                      Orders (0)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           {/* 右边 */}
