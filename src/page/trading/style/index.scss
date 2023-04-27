@@ -412,6 +412,10 @@
         color: var(--text);
         border-bottom: 2px solid var(--positive);
       }
+      li.short {
+        color: var(--text);
+        border-bottom: 2px solid var(--negative);
+      }
     }
 
     .Tasding_data_content {
@@ -637,7 +641,6 @@
         .Tasding_data_content_row4_left {
           padding-right: 10px;
           flex: 1 1;
-
           .Tasding_data_content_row4_left_1 {
             margin-bottom: 5px;
             color: var(--text-description);
@@ -650,15 +653,65 @@
             font-size: 18px;
             letter-spacing: -0.03em;
             text-align: center;
+            // padding: 10px;
+            font-weight: 400;
+            // background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
+            color: var(--text-strong);
+            margin-bottom: 0;
+          }
+          input {
+            max-width: 100px;
+            height: 32px;
+            border-radius: 4px;
+            font-size: 18px;
+            letter-spacing: -0.03em;
             padding: 10px;
             font-weight: 400;
             background-color: var(--input-bg);
             border: 1px solid var(--input-border);
             color: var(--text-strong);
+            // border: 0;
+            line-height: inherit;
+            margin: 0;
+            -moz-appearance: textfield;
+            min-width: 200px;
+          }
+
+          input:focus {
+            background-color: var(--input-bg-active);
+            border-color: var(--input-border-active);
+            outline: none !important;
+          }
+
+          input {
+            -moz-appearance: textfield;
+          }
+
+          .ant-input-number-handler-wrap {
+            display: none !important;
+          }
+
+          .ant-input-number-focused {
+            border-color: var(--input-border);
+            box-shadow: 0 0 0 2px var(--input-border);
+            border-inline-end-width: 1px;
+            outline: 0;
+          }
+
+          .ant-input-number:hover {
+            border-color: var(--input-border);
+          }
+
+          .ant-input-number {
+            border: 1px solid var(--input-border);
+            width: 200px;
+            margin: 0 !important;
           }
         }
 
         .Tasding_data_content_row4_right {
+          width: 122px;
           p {
             margin-bottom: 5px;
             color: var(--text-description);
@@ -853,7 +906,14 @@
           .active {
             color: var(--text-strong) !important;
           }
-
+          .disabled-select {
+            cursor: not-allowed;
+            text-decoration: line-through;
+            background: var(--disabled-bg);
+        }
+        .disabled-select, .disabled-select:hover {
+          color: var(--disabled-text);
+      }
           * {
             flex-basis: 20%;
             max-width: 20%;

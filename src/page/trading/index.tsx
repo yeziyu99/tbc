@@ -213,6 +213,11 @@ function Trading() {
       key: 'address',
     },
   ];
+  const [active,setActive]=useState(false)
+  const [index,setIndex]=useState('1')
+  const [index1,setIndex1]=useState('')
+  const [index2,setIndex2]=useState('')
+  const [disabled,setDisabled]=useState(false)
   return (
     <>
       <WagmiConfig client={wagmiClient}>
@@ -373,14 +378,20 @@ function Trading() {
           {/* 右边 */}
           <div className={classNames('Tasding_data')}>
             <ul className={classNames('Tasding_data_title')}>
-              <li className={classNames('active')}>Long</li>
-              <li>Short</li>
+              <li className={classNames(disabled?'':'active')} onClick={()=>{setDisabled(false)}}>Long</li>
+              <li className={classNames(disabled?'short':'')} onClick={()=>{setDisabled(true)}}>Short</li>
             </ul>
             <div className={classNames('Tasding_data_content')}>
               <ul className={classNames('Tasding_data_content_row')}>
-                <li className={classNames('active')}>Market</li>
-                <li>Limit</li>
-                <li>Stop</li>
+                <li onClick={()=>{
+                  setActive(false)
+                  setIndex('1')
+                }} className={classNames((index=='1'?'active':''))}>Market</li>
+                <li className={classNames((index=='2'?'active':''))} onClick={()=>{
+                  setActive(true)
+                  setIndex('2')
+                }}>Limit</li>
+                <li className={classNames((index=='3'?'active':''))}>Stop</li>
               </ul>
               <div className={classNames('Tasding_data_content_row2')}>
                 <div className={classNames('Tasding_data_content_row2_top')}>
@@ -417,9 +428,12 @@ function Trading() {
                   <p className={classNames('Tasding_data_content_row4_left_1')}>
                     Price
                   </p>
-                  <p className={classNames('Tasding_data_content_row4_left_2')}>
+                  {
+                    active?<InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} />:
+                    <p className={classNames('Tasding_data_content_row4_left_2')}>
                     28610.4
                   </p>
+                  }
                 </div>
                 <div className={classNames('Tasding_data_content_row4_right')}>
                   <p>
@@ -428,7 +442,12 @@ function Trading() {
                       (%)
                     </span>
                   </p>
-                  <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} />
+                  {
+                    active?<p className={classNames('Tasding_data_content_row4_left_2')}>
+                    2
+                  </p>:
+                    <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} />
+                  }
                 </div>
               </div>
               <div className={classNames('Tasding_data_content_row5')}>
@@ -444,11 +463,11 @@ function Trading() {
                   </p>
                 </div>
                 <div className={classNames('Tasding_data_content_row5_bottom')}>
-                  <div className='active'>NONE</div>
-                  <div>-10%</div>
-                  <div>-25%</div>
-                  <div>-50%</div>
-                  <div>-75%</div>
+                  <div className={classNames(index1=='1'?'active':'')} onClick={()=>{ setIndex1('1') }}>NONE</div>
+                  <div className={classNames(index1=='2'?'active':'')} onClick={()=>{ setIndex1('2') }}>-10%</div>
+                  <div className={classNames(index1=='3'?'active':'')} onClick={()=>{ setIndex1('3') }}>-25%</div>
+                  <div className={classNames(index1=='4'?'active':'')} onClick={()=>{ setIndex1('4') }}>-50%</div>
+                  <div className={classNames(index1=='5'?'active':'')} onClick={()=>{ setIndex1('5') }}>-75%</div>
                   <input type="text" placeholder="PRICE" pattern="^([0-9]+(?:[.,][0-9]*)?)$" value={stopVal} onChange={(e) => stopChange(e)} />
                 </div>
               </div>
@@ -465,11 +484,11 @@ function Trading() {
                   </p>
                 </div>
                 <div className={classNames('Tasding_data_content_row6_bottom')}>
-                  <div className='active'>25%</div>
-                  <div>50%</div>
-                  <div>100%</div>
-                  <div>300%</div>
-                  <div>900%</div>
+                  <div className={classNames(index2=='1'?'active':'')} onClick={()=>{ setIndex2('1') }}>25%</div>
+                  <div className={classNames(index2=='2'?'active':'')} onClick={()=>{ setIndex2('2') }}>50%</div>
+                  <div className={classNames(index2=='3'?'active':'')} onClick={()=>{ setIndex2('3') }}>100%</div>
+                  <div className={classNames(index2=='4'?'active':'')} onClick={()=>{ setIndex2('4') }}>300%</div>
+                  <div className={classNames((index2=='5'?'active':''),(disabled?'disabled-select':''))} onClick={()=>{ setIndex2('5') }}>900%</div>
                   <input type="text" placeholder="PRICE" pattern="^([0-9]+(?:[.,][0-9]*)?)$" value={stopVal} onChange={(e) => stopChange(e)} />
                 </div>
               </div>
