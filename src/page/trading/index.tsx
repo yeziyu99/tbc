@@ -14,7 +14,7 @@ import { arbitrum, mainnet, polygon } from 'wagmi/chains'
 import { Web3Button, Web3NetworkSwitch, useWeb3ModalTheme } from '@web3modal/react'
 // 滑动条测试
 // import { Slider } from 'antd';
-import { Col, InputNumber, Row, Slider, Space, Input, Dropdown,Table } from 'antd';
+import { Col, InputNumber, Row, Slider, Space, Input, Dropdown, Table } from 'antd';
 import type { SliderMarks } from 'antd/es/slider';
 // 按钮数据
 import { getDataList } from "../../http/index";
@@ -79,15 +79,15 @@ function Trading() {
   ]
   const { theme, setTheme } = useWeb3ModalTheme()
   useEffect(() => {
-  // theme;
-  setTheme({
-    themeMode: 'dark',
-    themeVariables: {
-      '--w3m-font-family': 'Roboto, sans-serif',
-      '--w3m-accent-color': 'rgb(121,76,255)',
-      '--w3m-background-color':'rgb(121,76,255)'
-    }
-  })
+    // theme;
+    setTheme({
+      themeMode: 'dark',
+      themeVariables: {
+        '--w3m-font-family': 'Roboto, sans-serif',
+        '--w3m-accent-color': 'rgb(121,76,255)',
+        '--w3m-background-color': 'rgb(121,76,255)'
+      }
+    })
     function handleWindowResize() {
       setWindowSize(getWindowSize());
     }
@@ -105,7 +105,7 @@ function Trading() {
 
 
   function onRequestData(param: any, callback: any) {
-    console.log(param, 'param');
+    // console.log(param, 'param');
 
     // 判断请求参数（品种和type的变化，如果变化需要重新获取历史记录）
     if (params.symbol !== param.symbol || params.type != param.type) {
@@ -120,14 +120,14 @@ function Trading() {
 
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
-    console.log(innerWidth,innerHeight)
-    return { innerWidth: innerWidth - 480, innerHeight: innerHeight - 290 };
+    // console.log(innerWidth,innerHeight)
+    return { innerWidth: innerWidth - 480, innerHeight: innerHeight - 290 - 63 - 96 };
   }
   async function getKlinesData() {
     let obj: any = {}
     let res = await getDataList(params);
     if (res) {
-      console.log(res);
+      // console.log(res);
       let arr: any = []
       res.data.data.records.map((item: any) => {
         let line: any = []
@@ -147,7 +147,7 @@ function Trading() {
 
     }
   }
-  const dataSource = [{}
+  const dataSource: any = [
     // {
     //   key: '1',
     //   name: '胡彦斌',
@@ -161,7 +161,7 @@ function Trading() {
     //   address: '西湖区湖底公园1号',
     // },
   ];
-  
+
   const columns = [
     {
       title: 'Type',
@@ -214,11 +214,11 @@ function Trading() {
       key: 'address',
     },
   ];
-  const [active,setActive]=useState(false)
-  const [index,setIndex]=useState('1')
-  const [index1,setIndex1]=useState('')
-  const [index2,setIndex2]=useState('')
-  const [disabled,setDisabled]=useState(false)
+  const [active, setActive] = useState(false)
+  const [index, setIndex] = useState('1')
+  const [index1, setIndex1] = useState('')
+  const [index2, setIndex2] = useState('')
+  const [disabled, setDisabled] = useState(false)
   return (
     <>
       <WagmiConfig client={wagmiClient}>
@@ -308,9 +308,9 @@ function Trading() {
                       </div>
                     </div>
                     <div className='ModeDropdownToggle_toggleButton__xI1ff'>
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="grid-2" className="svg-inline--fa fa-grid-2 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                      <path fill="currentColor" d="M80 64c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H80zM32 80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H80c-26.5 0-48-21.5-48-48V80zM80 320c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H80zM32 336c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H80c-26.5 0-48-21.5-48-48V336zM432 64H336c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16zM336 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H336c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48zm0 288c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H336zm-48 16c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H336c-26.5 0-48-21.5-48-48V336z"></path>
-                    </svg>
+                      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="grid-2" className="svg-inline--fa fa-grid-2 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <path fill="currentColor" d="M80 64c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H80zM32 80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H80c-26.5 0-48-21.5-48-48V80zM80 320c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H80zM32 336c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H80c-26.5 0-48-21.5-48-48V336zM432 64H336c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16zM336 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H336c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48zm0 288c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H336zm-48 16c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H336c-26.5 0-48-21.5-48-48V336z"></path>
+                      </svg>
                     </div>
                   </div>
                 </div>
@@ -346,12 +346,12 @@ function Trading() {
                   <div className='row_head_title'>
                     <div className='trades-active-title frist_title'>
                       <p className='ta-c toberemoved'>
-                      Trades (0)
+                        Trades (0)
                       </p>
                     </div>
                     <div className='frist_title'>
                       <p className='ta-c toberemoved'>
-                      Orders (0)
+                        Orders (0)
                       </p>
                     </div>
                   </div>
@@ -360,7 +360,7 @@ function Trading() {
                   </div>
                 </div>
                 <div className='Tasding_king_bottom_row_table'>
-                <Table dataSource={dataSource} columns={columns} pagination={false} />
+                  <Table dataSource={dataSource} columns={columns} pagination={false} />
                 </div>
               </div>
             </div>
@@ -368,20 +368,20 @@ function Trading() {
           {/* 右边 */}
           <div className={classNames('Tasding_data')}>
             <ul className={classNames('Tasding_data_title')}>
-              <li className={classNames(disabled?'':'active')} onClick={()=>{setDisabled(false)}}>Long</li>
-              <li className={classNames(disabled?'short':'')} onClick={()=>{setDisabled(true)}}>Short</li>
+              <li className={classNames(disabled ? '' : 'active')} onClick={() => { setDisabled(false) }}>Long</li>
+              <li className={classNames(disabled ? 'short' : '')} onClick={() => { setDisabled(true) }}>Short</li>
             </ul>
             <div className={classNames('Tasding_data_content')}>
               <ul className={classNames('Tasding_data_content_row')}>
-                <li onClick={()=>{
+                <li onClick={() => {
                   setActive(false)
                   setIndex('1')
-                }} className={classNames((index=='1'?'active':''))}>Market</li>
-                <li className={classNames((index=='2'?'active':''))} onClick={()=>{
+                }} className={classNames((index == '1' ? 'active' : ''))}>Market</li>
+                <li className={classNames((index == '2' ? 'active' : ''))} onClick={() => {
                   setActive(true)
                   setIndex('2')
                 }}>Limit</li>
-                <li className={classNames((index=='3'?'active':''))} onClick={()=>{
+                <li className={classNames((index == '3' ? 'active' : ''))} onClick={() => {
                   setActive(true)
                   setIndex('3')
                 }}>Stop</li>
@@ -422,10 +422,10 @@ function Trading() {
                     Price
                   </p>
                   {
-                    active?<InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} />:
-                    <p className={classNames('Tasding_data_content_row4_left_2')}>
-                    28610.4
-                  </p>
+                    active ? <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} /> :
+                      <p className={classNames('Tasding_data_content_row4_left_2')}>
+                        28610.4
+                      </p>
                   }
                 </div>
                 <div className={classNames('Tasding_data_content_row4_right')}>
@@ -436,10 +436,10 @@ function Trading() {
                     </span>
                   </p>
                   {
-                    active?<p style={{textAlign:'center'}} className={classNames('Tasding_data_content_row4_left_2')}>
-                    2
-                  </p>:
-                    <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} />
+                    active ? <p style={{ textAlign: 'center' }} className={classNames('Tasding_data_content_row4_left_2')}>
+                      2
+                    </p> :
+                      <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} />
                   }
                 </div>
               </div>
@@ -456,11 +456,11 @@ function Trading() {
                   </p>
                 </div>
                 <div className={classNames('Tasding_data_content_row5_bottom')}>
-                  <div className={classNames(index1=='1'?'active':'')} onClick={()=>{ setIndex1('1') }}>NONE</div>
-                  <div className={classNames(index1=='2'?'active':'')} onClick={()=>{ setIndex1('2') }}>-10%</div>
-                  <div className={classNames(index1=='3'?'active':'')} onClick={()=>{ setIndex1('3') }}>-25%</div>
-                  <div className={classNames(index1=='4'?'active':'')} onClick={()=>{ setIndex1('4') }}>-50%</div>
-                  <div className={classNames(index1=='5'?'active':'')} onClick={()=>{ setIndex1('5') }}>-75%</div>
+                  <div className={classNames(index1 == '1' ? 'active' : '')} onClick={() => { setIndex1('1') }}>NONE</div>
+                  <div className={classNames(index1 == '2' ? 'active' : '')} onClick={() => { setIndex1('2') }}>-10%</div>
+                  <div className={classNames(index1 == '3' ? 'active' : '')} onClick={() => { setIndex1('3') }}>-25%</div>
+                  <div className={classNames(index1 == '4' ? 'active' : '')} onClick={() => { setIndex1('4') }}>-50%</div>
+                  <div className={classNames(index1 == '5' ? 'active' : '')} onClick={() => { setIndex1('5') }}>-75%</div>
                   <input type="text" placeholder="PRICE" pattern="^([0-9]+(?:[.,][0-9]*)?)$" value={stopVal} onChange={(e) => stopChange(e)} />
                 </div>
               </div>
@@ -477,11 +477,11 @@ function Trading() {
                   </p>
                 </div>
                 <div className={classNames('Tasding_data_content_row6_bottom')}>
-                  <div className={classNames(index2=='1'?'active':'')} onClick={()=>{ setIndex2('1') }}>25%</div>
-                  <div className={classNames(index2=='2'?'active':'')} onClick={()=>{ setIndex2('2') }}>50%</div>
-                  <div className={classNames(index2=='3'?'active':'')} onClick={()=>{ setIndex2('3') }}>100%</div>
-                  <div className={classNames(index2=='4'?'active':'')} onClick={()=>{ setIndex2('4') }}>300%</div>
-                  <div className={classNames((index2=='5'?'active':''),(disabled?'disabled-select':''))} onClick={()=>{ setIndex2('5') }}>900%</div>
+                  <div className={classNames(index2 == '1' ? 'active' : '')} onClick={() => { setIndex2('1') }}>25%</div>
+                  <div className={classNames(index2 == '2' ? 'active' : '')} onClick={() => { setIndex2('2') }}>50%</div>
+                  <div className={classNames(index2 == '3' ? 'active' : '')} onClick={() => { setIndex2('3') }}>100%</div>
+                  <div className={classNames(index2 == '4' ? 'active' : '')} onClick={() => { setIndex2('4') }}>300%</div>
+                  <div className={classNames((index2 == '5' ? 'active' : ''), (disabled ? 'disabled-select' : ''))} onClick={() => { setIndex2('5') }}>900%</div>
                   <input type="text" placeholder="PRICE" pattern="^([0-9]+(?:[.,][0-9]*)?)$" value={stopVal} onChange={(e) => stopChange(e)} />
                 </div>
               </div>

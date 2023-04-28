@@ -17,6 +17,7 @@ import { configureChains, createClient, WagmiConfig } from 'wagmi'
 import { arbitrum, mainnet, polygon,foundry,localhost,Chain } from 'wagmi/chains'
 import { Web3Button, Web3NetworkSwitch } from '@web3modal/react'
 import { useNavigate, useLocation } from 'react-router-dom'
+//web3modal配置
 const devChain = {
     id: 37139,
     name: "devChain",
@@ -24,8 +25,6 @@ const devChain = {
     nativeCurrency: {
         decimals: 18,
         name: "ether",
-        // You
-        // 1 minute ago• Uncommitte
         symbol: 'ETH',
     },
     rpcUrls: {
@@ -33,7 +32,8 @@ const devChain = {
         default: { http: ['http://152.32.198.202:8545'] },
     }
 } as const satisfies Chain
-const chains = [foundry,localhost,devChain]
+const chains = [devChain]
+// const chains = [foundry,localhost,devChain]
 const projectId = 'dba7331053371470365be9206718fb4d'
 const { provider } = configureChains(chains, [w3mProvider({ projectId })])
 const wagmiClient = createClient({
@@ -42,18 +42,13 @@ const wagmiClient = createClient({
   provider
 })
 const ethereumClient = new EthereumClient(wagmiClient, chains)
+
+
+
 function Header(props:any) {
     const navigate = useNavigate();
     const location = useLocation();//{hash:"",key:"poy26awo",pathname:"/",search:"",state:null}
     useEffect(() => {
-        // 给未来字页面元素添加样式 （太复杂 后面再说）
-        // setTimeout(() => {
-        //     let gtx = document.querySelector('w3m-connect-button');
-        //     let style = document.createElement("style");
-        //     style.innerHTML = `w3m-button-big{color: red;}`;
-        //     console.log(gtx)
-        //     // gtx.shadowRoot.appendChild(style);
-        // },200)
         
     }, [])
     let history=useNavigate()

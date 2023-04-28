@@ -34,7 +34,7 @@ export class Chart {
     // 设置标志
     setSymbol(symbol) {
         this._symbol = symbol;
-        console.log(1111)
+        // console.log(1111)
         this.updateDataAndDisplay();
     }
     // 更新数据和显示
@@ -44,7 +44,7 @@ export class Chart {
         ChartManager.instance.setCurrentDataSource('frame0.k0', this._symbol + '.' + this._range);
         ChartManager.instance.setNormalMode();
         let f = Kline.instance.chartMgr.getDataSource("frame0.k0").getLastDate();
-        console.log(f, 'f')
+        // console.log(f, 'f')
         if (f === -1) {
             Kline.instance.requestParam = Control.setHttpRequestParam(Kline.instance.symbol, Kline.instance.range, Kline.instance.limit, null);
             Control.requestData(true);
@@ -57,13 +57,13 @@ export class Chart {
 
     // 设置现行合约单位
     setCurrentContractUnit(contractUnit) {
-        console.log(222)
+        // console.log(222)
         this._contract_unit = contractUnit;
         this.updateDataAndDisplay();
     }
     // 设置当前货币类型
     setCurrentMoneyType(moneyType) {
-        console.log(333);
+        // console.log(333);
         this._money_type = moneyType;
         this.updateDataAndDisplay();
     }
@@ -71,7 +71,7 @@ export class Chart {
     setCurrentPeriod(period) {
         // Kline.instance.periodMap[period] 当前间隔时间
         this._range = Kline.instance.periodMap[period];
-        console.log(Kline.instance);
+        // console.log(Kline.instance);
         if (Kline.instance.type === "stomp" && Kline.instance.stompClient.ws.readyState === 1) {
             Kline.instance.subscribed.unsubscribe();
             Kline.instance.subscribed = Kline.instance.stompClient.subscribe(Kline.instance.subscribePath + '/' + Kline.instance.symbol + '/' + this._range, Control.subscribeCallback);

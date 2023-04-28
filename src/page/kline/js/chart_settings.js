@@ -34,7 +34,7 @@ export class ChartSettings {
             ChartSettings.init();
             ChartSettings.load();
             ChartSettings.checkVersion();
-            console.log(ChartSettings._data, 'ChartSettings');
+            // console.log(ChartSettings._data, 'ChartSettings');
         }
         return ChartSettings._data;
     };

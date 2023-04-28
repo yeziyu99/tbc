@@ -45,7 +45,8 @@ class ReactKline extends React.Component {
         this.state.kline.draw();
     }
     // 设置画布大小
-    resize(w,h){
+    resize(w, h) {
+        console.log(49,w,h)
         this.state.kline.resize(w, h);
     }
     // 设置交易品种
@@ -467,7 +468,7 @@ export const websockmessage = (e) => {
     if (Kline.instance.data?.records) {
         let historyData = JSON.parse(JSON.stringify(Kline.instance.data))
         let data = JSON.parse(e.data)
-        console.log(historyData)
+        // console.log(historyData)
         // 判断返回的数据是否正确
         if (data instanceof Array) {
             // historyData.lines[0][4] = parseFloat(data[0][2])
