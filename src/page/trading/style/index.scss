@@ -642,6 +642,7 @@
         .Tasding_data_content_row4_left {
           padding-right: 10px;
           flex: 1 1;
+          width: 200px;
           .Tasding_data_content_row4_left_1 {
             margin-bottom: 5px;
             color: var(--text-description);
@@ -660,6 +661,7 @@
             border: 1px solid var(--input-border);
             color: var(--text-strong);
             margin-bottom: 0;
+            line-height: 32px;
           }
           input {
             max-width: 100px;
