@@ -14,10 +14,26 @@ import classNames from "classnames";
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/react'
 import { configureChains, createClient, WagmiConfig } from 'wagmi'
-import { arbitrum, mainnet, polygon } from 'wagmi/chains'
+import { arbitrum, mainnet, polygon,foundry,localhost,Chain } from 'wagmi/chains'
 import { Web3Button, Web3NetworkSwitch } from '@web3modal/react'
-import { useNavigate, useLocation, useRouteMatch } from 'react-router-dom'
-const chains = [arbitrum, mainnet, polygon]
+import { useNavigate, useLocation } from 'react-router-dom'
+const devChain = {
+    id: 37139,
+    name: "devChain",
+    network: "devChain",
+    nativeCurrency: {
+        decimals: 18,
+        name: "ether",
+        // You
+        // 1 minute ago• Uncommitte
+        symbol: 'ETH',
+    },
+    rpcUrls: {
+        public: { http: ['http://152.32.198.202:8545'] },
+        default: { http: ['http://152.32.198.202:8545'] },
+    }
+} as const satisfies Chain
+const chains = [foundry,localhost,devChain]
 const projectId = 'dba7331053371470365be9206718fb4d'
 const { provider } = configureChains(chains, [w3mProvider({ projectId })])
 const wagmiClient = createClient({
@@ -26,7 +42,7 @@ const wagmiClient = createClient({
   provider
 })
 const ethereumClient = new EthereumClient(wagmiClient, chains)
-function Header(props) {
+function Header(props:any) {
     const navigate = useNavigate();
     const location = useLocation();//{hash:"",key:"poy26awo",pathname:"/",search:"",state:null}
     useEffect(() => {
@@ -115,8 +131,9 @@ function Header(props) {
                                 <img className="menu_btns_select_right" src={DownArrow} alt="" />
                             </button> */}
                         </li>
-                        <li style={{position: 'relative'}} >
-                            <Web3Button className="heaser_bbb2"/>
+                                <li style={{ position: 'relative' }} >
+                                    {/* className="heaser_bbb2" */}
+                            <Web3Button />
                             {/* <button className="menu_btns_icon cursor_pointer">
                                 <span>Connect</span>
                                 <span> Wallet</span>
