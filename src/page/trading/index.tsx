@@ -381,7 +381,10 @@ function Trading() {
                   setActive(true)
                   setIndex('2')
                 }}>Limit</li>
-                <li className={classNames((index=='3'?'active':''))}>Stop</li>
+                <li className={classNames((index=='3'?'active':''))} onClick={()=>{
+                  setActive(true)
+                  setIndex('3')
+                }}>Stop</li>
               </ul>
               <div className={classNames('Tasding_data_content_row2')}>
                 <div className={classNames('Tasding_data_content_row2_top')}>
@@ -433,7 +436,7 @@ function Trading() {
                     </span>
                   </p>
                   {
-                    active?<p className={classNames('Tasding_data_content_row4_left_2')}>
+                    active?<p style={{textAlign:'center'}} className={classNames('Tasding_data_content_row4_left_2')}>
                     2
                   </p>:
                     <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} />
