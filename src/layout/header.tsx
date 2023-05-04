@@ -14,7 +14,8 @@ import classNames from "classnames";
 import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum'
 import { Web3Modal } from '@web3modal/react'
 import { configureChains, createClient, WagmiConfig } from 'wagmi'
-import { arbitrum, mainnet, polygon,foundry,localhost,Chain } from 'wagmi/chains'
+import { arbitrum, mainnet, polygon,foundry,localhost } from 'wagmi/chains'
+import { Chain } from 'wagmi'
 import { Web3Button, Web3NetworkSwitch } from '@web3modal/react'
 import { useNavigate, useLocation } from 'react-router-dom'
 //web3modal配置
@@ -30,6 +31,16 @@ const devChain = {
     rpcUrls: {
         public: { http: ['http://152.32.198.202:8545'] },
         default: { http: ['http://152.32.198.202:8545'] },
+    },
+    blockExplorers: {
+        etherscan: { name: "ETHSCAN", url: "http://152.32.198.202:8545" },
+        default: { name: "ETHSCAN", url: "http://152.32.198.202:8545" },
+    },
+    contracts:{
+        // multicall3: {
+        //     address:"Oxcallbde05977b3631167028862be2a173976ca11",
+        //     blockCreated: 11_907_934
+        // }
     }
 } as const satisfies Chain
 const chains = [devChain]
