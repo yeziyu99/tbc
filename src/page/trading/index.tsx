@@ -48,8 +48,10 @@ function Trading() {
   const [title4, setTitle4] = useState(true);
   const [title5, setTitle5] = useState(true);
   const onChange = (newValue: any) => {
+    console.log(newValue)
     setInputValue(newValue);
   };
+  
   const stopChange = (e: any) => {
     var value = e.target.value.replace(/[^\d]/g, '')
     setStopVal(value)
@@ -219,6 +221,26 @@ function Trading() {
   const [index1, setIndex1] = useState('')
   const [index2, setIndex2] = useState('')
   const [disabled, setDisabled] = useState(false)
+  const [openPrice, setOpenPrice] = useState(1)
+  const OnOpenPrice = (newValue: any) => {
+    console.log(newValue)
+    setOpenPrice(newValue);
+  };
+  const approve= ()=>{
+    let obj = {
+      trader:1, // 当前登录钱包的地址
+      pairIndex:1, // 根据交易品种名称匹配所有交易对数组获取 pairIndex
+      index:0, // 写死0
+      initialPosSizeDai:0, // 写死0
+      positionSizeDai: columnInput*Math.pow(10,18), // User Input: collateral (1e18) ==>Collateral
+      openPrice:openPrice*Math.pow(10,10), // Ask/Bid (PRECISION) 1e10 ==>Price
+      buy:disabled ? true:false, // User Input  buy ：long  short // true  flse
+      leverage:inputValue, // User Input (PRECISION)
+      tp:1, // User Input (PRECISION)
+      sl:1, // User Input (PRECISION)
+    }
+    console.log(obj)
+  }
   return (
     <>
       <WagmiConfig client={wagmiClient}>
@@ -230,7 +252,7 @@ function Trading() {
             {/* 上边  */}
             <div className={classNames('Tasding_king_img')}>
               <div className='PairSelectionContainer_container__4JaAm'>
-                <div className='FavoritePairsContainer_container__ZU_H7'>
+                {/* <div className='FavoritePairsContainer_container__ZU_H7'>
                   <div className='FavoritePairsContainer_starContainer__G_6_g'>
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" className="svg-inline--fa fa-star FavoritePairsContainer_star__0Oxoz" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                       <path fill="currentColor" d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path>
@@ -268,7 +290,7 @@ function Trading() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className='CurrentPairInfo_container__JHYj6'>
                   <div className='CurrentPairInfo_mainRow__KICmC'>
                     <Dropdown menu={{ items }}>
@@ -280,7 +302,7 @@ function Trading() {
                       </a>
                     </Dropdown>
                   </div>
-                  <div className='CurrentPrice_price__VV3lg'>
+                  {/* <div className='CurrentPrice_price__VV3lg'>
                     <h4>1.08405</h4>
                     <span className='CurrentPrice_negative__SbdRv CurrentPrice_positive__18E8h'>+4.48%</span>
                   </div>
@@ -312,7 +334,7 @@ function Trading() {
                         <path fill="currentColor" d="M80 64c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16H80zM32 80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H80c-26.5 0-48-21.5-48-48V80zM80 320c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H80zM32 336c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H80c-26.5 0-48-21.5-48-48V336zM432 64H336c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V80c0-8.8-7.2-16-16-16zM336 32h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H336c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48zm0 288c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96c8.8 0 16-7.2 16-16V336c0-8.8-7.2-16-16-16H336zm-48 16c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H336c-26.5 0-48-21.5-48-48V336z"></path>
                       </svg>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <ReactKline
@@ -422,9 +444,9 @@ function Trading() {
                     Price
                   </p>
                   {
-                    active ? <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={inputValue} onChange={onChange} /> :
+                    active ? <InputNumber min={2} max={150} style={{ margin: '0 16px' }} value={openPrice} onChange={OnOpenPrice} /> :
                       <p className={classNames('Tasding_data_content_row4_left_2')}>
-                        28610.4
+                        {openPrice}
                       </p>
                   }
                 </div>
@@ -487,6 +509,7 @@ function Trading() {
               </div>
               <div className={classNames('Tasding_data_content_row7')}>
                 <Web3Button />
+                <button onClick={() => { setDisabled(false) }}>APPROVE</button>
               </div>
               <div style={{ marginTop: 20, marginBottom: 8 }} className='Tasding_data_content_row8 TradingPanel_orderStatus__ZRa1_'>
                 <span>EOS/USD</span>

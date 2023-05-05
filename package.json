@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@wagmi/cli": "^0.1.15",
     "node-sass": "^7.0.3"
   }
 }

@@ -36,12 +36,13 @@ const devChain = {
         etherscan: { name: "ETHSCAN", url: "http://152.32.198.202:8545" },
         default: { name: "ETHSCAN", url: "http://152.32.198.202:8545" },
     },
-    contracts:{
-        // multicall3: {
-        //     address:"Oxcallbde05977b3631167028862be2a173976ca11",
-        //     blockCreated: 11_907_934
-        // }
-    }
+    // contracts:{
+    //     multicall3: {
+    //         address:"0x90F79bf6EB2c4f870365E785982E1f101E93b906",
+    //         // address:"Oxcallbde05977b3631167028862be2a173976ca11",
+    //         blockCreated: 11_907_934
+    //     }
+    // }
 } as const satisfies Chain
 const chains = [devChain]
 // const chains = [foundry,localhost,devChain]
